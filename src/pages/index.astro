@@ -4,42 +4,27 @@ import Card from '../components/Card.astro';
 
 const featuredProjects = [
   {
-    title: 'Project Alpha',
-    description: 'A revolutionary app that changes how people interact with data.',
-    tags: ['React', 'TypeScript', 'Node.js'],
-    href: 'https://github.com',
+    title: 'shortly',
+    description: 'A URL shortener service built with Go, focusing on performance and simplicity.',
+    tags: ['Go', 'Backend', 'REST API'],
+    href: 'https://github.com/apurvasaraiya/shortly',
   },
   {
-    title: 'Creative Dashboard',
-    description: 'Beautiful analytics dashboard with real-time updates.',
-    tags: ['Vue', 'D3.js', 'PostgreSQL'],
-    href: 'https://github.com',
+    title: 'CopyIT',
+    description: 'Copy paste utility built using Python and Linux packages with clipboard history support.',
+    tags: ['Python', 'Linux', 'CLI'],
+    href: 'https://github.com/apurvasaraiya/CopyIT',
   },
   {
-    title: 'Mobile Magic',
-    description: 'Cross-platform mobile app with delightful animations.',
-    tags: ['React Native', 'Expo'],
-    href: 'https://github.com',
-  },
-];
-
-const recentPosts = [
-  {
-    title: 'Building Accessible Web Apps',
-    excerpt: 'Learn how to create inclusive experiences that work for everyone.',
-    date: 'Dec 5, 2024',
-    href: '/blog',
-  },
-  {
-    title: 'The Art of Clean Code',
-    excerpt: 'Tips and tricks for writing maintainable, readable code.',
-    date: 'Nov 28, 2024',
-    href: '/blog',
+    title: 'dotfiles',
+    description: 'Personal dotfiles and machine setup configurations for optimal development workflow.',
+    tags: ['Shell', 'Linux', 'DevOps'],
+    href: 'https://github.com/apurvasaraiya/dotfiles',
   },
 ];
 ---
 
-<Base title="YourName - Developer & Creator">
+<Base title="Apurva Saraiya - Software Engineer">
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-bg">
@@ -52,12 +37,12 @@ const recentPosts = [
       <div class="hero-content">
         <p class="hero-greeting animate-fade-in">Hey there! 👋 I'm</p>
         <h1 class="hero-title animate-fade-in delay-1">
-          <span class="hero-name">Your Name</span>
+          <span class="hero-name">Apurva Saraiya</span>
         </h1>
         <p class="hero-subtitle animate-fade-in delay-2">
-          Developer, creator, and professional coffee drinker. 
-          I build <span class="highlight">delightful digital experiences</span> 
-          that make people smile.
+          Software Engineer passionate about building 
+          <span class="highlight">robust backend systems</span> 
+          and leveraging the power of the cloud.
         </p>
         <div class="hero-cta animate-fade-in delay-3">
           <a href="/projects" class="btn btn-primary">
@@ -67,7 +52,7 @@ const recentPosts = [
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <a href="/blog" class="btn btn-outline">Read My Blog</a>
+          <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener" class="btn btn-outline">View GitHub</a>
         </div>
       </div>
       
@@ -78,7 +63,7 @@ const recentPosts = [
           </div>
           <div class="avatar-orbit">
             <span class="orbit-icon">⚡</span>
-            <span class="orbit-icon">🎨</span>
+            <span class="orbit-icon">☁️</span>
             <span class="orbit-icon">🚀</span>
           </div>
         </div>
@@ -97,13 +82,14 @@ const recentPosts = [
       <div class="about-content">
         <div class="about-text">
           <p>
-            I'm a passionate developer who loves turning ideas into reality. 
-            With a background in computer science and years of tinkering with code, 
-            I specialize in creating web applications that are both beautiful and functional.
+            I'm a Software Engineer passionate about crafting robust backend systems 
+            and leveraging the power of the cloud. I thrive on solving complex problems 
+            and continuously exploring new technologies.
           </p>
           <p>
-            When I'm not coding, you'll find me exploring new technologies, 
-            contributing to open source, or searching for the perfect cup of coffee. ☕
+            Currently working on Go, Cloud, CloudFoundry, and BOSH. I'm learning about 
+            Operating Systems and Distributed Systems, and always looking to collaborate 
+            on projects related to AI! 🚀
           </p>
         </div>
         
@@ -111,28 +97,36 @@ const recentPosts = [
           <h3>Things I Love Working With</h3>
           <div class="skills-grid">
             <div class="skill-item">
-              <span class="skill-icon">⚛️</span>
-              <span>React</span>
-            </div>
-            <div class="skill-item">
-              <span class="skill-icon">🦕</span>
-              <span>TypeScript</span>
-            </div>
-            <div class="skill-item">
-              <span class="skill-icon">🌐</span>
-              <span>Node.js</span>
-            </div>
-            <div class="skill-item">
-              <span class="skill-icon">🎨</span>
-              <span>CSS</span>
+              <span class="skill-icon">🐹</span>
+              <span>Go</span>
             </div>
             <div class="skill-item">
               <span class="skill-icon">🐍</span>
               <span>Python</span>
             </div>
             <div class="skill-item">
+              <span class="skill-icon">☁️</span>
+              <span>Cloud</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🐳</span>
+              <span>Docker</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">☸️</span>
+              <span>Kubernetes</span>
+            </div>
+            <div class="skill-item">
               <span class="skill-icon">🗄️</span>
               <span>PostgreSQL</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">📨</span>
+              <span>Kafka</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🐧</span>
+              <span>Linux</span>
             </div>
           </div>
         </div>
@@ -170,7 +164,7 @@ const recentPosts = [
     </div>
   </section>
 
-  <!-- Blog Preview Section -->
+  <!-- Blog Preview Section - Hidden for now
   <section class="section blog-preview">
     <div class="container">
       <div class="section-header">
@@ -178,27 +172,30 @@ const recentPosts = [
         <div class="squiggle"></div>
       </div>
       
-      <div class="blog-grid">
-        {recentPosts.map((post, i) => (
-          <div class={`animate-fade-in delay-${i + 1}`}>
-            <Card 
-              title={post.title}
-              description={post.excerpt}
-              date={post.date}
-              href={post.href}
-              variant="blog"
-            />
+      <div class="coming-soon-container animate-fade-in">
+        <div class="coming-soon-card">
+          <div class="cooking-animation">
+            <span class="cooking-emoji">👨‍🍳</span>
+            <div class="steam">
+              <span class="steam-particle">~</span>
+              <span class="steam-particle">~</span>
+              <span class="steam-particle">~</span>
+            </div>
+            <span class="pot-emoji">🍳</span>
           </div>
-        ))}
+          <h3>Something's Cooking!</h3>
+          <p>Blog posts are on their way. Stay tuned for insights on backend engineering, distributed systems, and more!</p>
+        </div>
       </div>
       
       <div class="section-cta">
         <a href="/blog" class="btn btn-secondary">
-          Read All Posts →
+          Visit Blog →
         </a>
       </div>
     </div>
   </section>
+  -->
 
   <!-- CTA Section -->
   <section class="section cta-section">
@@ -206,13 +203,14 @@ const recentPosts = [
       <div class="cta-card">
         <div class="cta-blob blob blob-1"></div>
         <div class="cta-content">
-          <h2>Let's Work Together!</h2>
-          <p>Have a project in mind? I'd love to hear about it.</p>
-          <a href="mailto:hello@example.com" class="btn btn-primary">
-            Get In Touch
+          <h2>Let's Connect!</h2>
+          <p>Interested in collaborating or just want to say hi?</p>
+          <a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener" class="btn btn-primary">
+            Connect on LinkedIn
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
             </svg>
           </a>
         </div>
@@ -441,13 +439,88 @@ const recentPosts = [
     gap: var(--space-lg);
   }
   
-  /* Blog Grid */
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-lg);
-    max-width: 800px;
+  /* Coming Soon Card */
+  .coming-soon-container {
+    max-width: 500px;
     margin: 0 auto;
+  }
+  
+  .coming-soon-card {
+    background: var(--color-bg-alt);
+    border: 3px solid var(--color-text);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    text-align: center;
+    box-shadow: var(--shadow-cartoon);
+  }
+  
+  .cooking-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .cooking-emoji {
+    font-size: 3rem;
+    animation: bounce 1s ease-in-out infinite;
+  }
+  
+  .steam {
+    display: flex;
+    gap: var(--space-sm);
+    margin: var(--space-xs) 0;
+  }
+  
+  .steam-particle {
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+    opacity: 0.6;
+    animation: steam 1.5s ease-in-out infinite;
+  }
+  
+  .steam-particle:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .steam-particle:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  .pot-emoji {
+    font-size: 4rem;
+    animation: wiggle 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes steam {
+    0%, 100% { 
+      transform: translateY(0) scale(1);
+      opacity: 0.6;
+    }
+    50% { 
+      transform: translateY(-8px) scale(1.2);
+      opacity: 0.3;
+    }
+  }
+  
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  
+  .coming-soon-card h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-accent);
+  }
+  
+  .coming-soon-card p {
+    color: var(--color-text-muted);
+    margin-bottom: 0;
   }
   
   /* Section CTA */
@@ -531,12 +604,6 @@ const recentPosts = [
       grid-template-columns: 1fr;
     }
     
-    .skills-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  @media (max-width: 480px) {
     .skills-grid {
       grid-template-columns: repeat(2, 1fr);
     }

@@ -7,8 +7,8 @@ const currentYear = new Date().getFullYear();
   <div class="container footer-container">
     <div class="footer-content">
       <div class="footer-brand">
-        <span class="footer-logo">✨ YourName</span>
-        <p class="footer-tagline">Building cool stuff, one pixel at a time.</p>
+        <span class="footer-logo"><span class="footer-logo-icon">&lt;/&gt;</span> Apurva Saraiya</span>
+        <p class="footer-tagline">Building robust systems, one commit at a time.</p>
       </div>
       
       <div class="footer-links">
@@ -17,16 +17,16 @@ const currentYear = new Date().getFullYear();
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/projects">Projects</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <!-- <li><a href="/blog">Blog</a></li> --> <!-- Hidden for now -->
           </ul>
         </div>
         
         <div class="footer-col">
           <h4>Connect</h4>
           <ul>
-            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a></li>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://x.com/a____a07" target="_blank" rel="noopener">X</a></li>
+            <li><a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
         </div>
       </div>
@@ -39,7 +39,7 @@ const currentYear = new Date().getFullYear();
         and lots of 
         <span aria-label="coffee">☕</span>
       </p>
-      <p class="copyright">© {currentYear} YourName. All rights reserved.</p>
+      <p class="copyright">© {currentYear} Apurva Saraiya. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -78,12 +78,28 @@ const currentYear = new Date().getFullYear();
   }
   
   .footer-logo {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-text);
     margin-bottom: var(--space-sm);
+  }
+  
+  .footer-logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-accent), #ff8e8e);
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    letter-spacing: -1px;
   }
   
   .footer-tagline {
@@ -160,4 +176,3 @@ const currentYear = new Date().getFullYear();
     }
   }
 </style>
-

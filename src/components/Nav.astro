@@ -2,13 +2,13 @@
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
-  { href: '/blog', label: 'Blog' },
+  // { href: '/blog', label: 'Blog' }, // Hidden for now - Blog coming soon
 ];
 
 const socialLinks = [
-  { href: 'https://github.com', label: 'GitHub', icon: 'github' },
-  { href: 'https://twitter.com', label: 'Twitter', icon: 'twitter' },
-  { href: 'https://linkedin.com', label: 'LinkedIn', icon: 'linkedin' },
+  { href: 'https://github.com/apurvasaraiya', label: 'GitHub', icon: 'github' },
+  { href: 'https://x.com/a____a07', label: 'X', icon: 'twitter' },
+  { href: 'https://www.linkedin.com/in/apurva-saraiya/', label: 'LinkedIn', icon: 'linkedin' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -17,7 +17,7 @@ const currentPath = Astro.url.pathname;
 <nav class="nav">
   <div class="nav-container container">
     <a href="/" class="nav-logo">
-      <span class="logo-text">✨ YourName</span>
+      <span class="logo-text"><span class="logo-icon">&lt;/&gt;</span> Apurva</span>
     </a>
     
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -101,7 +101,23 @@ const currentPath = Astro.url.pathname;
   }
   
   .logo-text {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  
+  .logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-accent), #ff8e8e);
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    letter-spacing: -1px;
   }
   
   .nav-toggle {
@@ -255,4 +271,3 @@ const currentPath = Astro.url.pathname;
     menu?.classList.toggle('open');
   });
 </script>
-
