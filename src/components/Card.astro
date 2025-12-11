@@ -1,0 +1,148 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  href?: string;
+  tags?: string[];
+  date?: string;
+  variant?: 'default' | 'project' | 'blog';
+}
+
+const { 
+  title, 
+  description, 
+  href, 
+  tags = [], 
+  date,
+  variant = 'default' 
+} = Astro.props;
+
+const isExternal = href?.startsWith('http');
+---
+
+<article class:list={['card', `card-${variant}`]}>
+  <div class="card-accent"></div>
+  <div class="card-content">
+    {date && <time class="card-date">{date}</time>}
+    
+    <h3 class="card-title">
+      {href ? (
+        <a 
+          href={href} 
+          class="card-link"
+          {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+        >
+          {title}
+          {isExternal && (
+            <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          )}
+        </a>
+      ) : (
+        title
+      )}
+    </h3>
+    
+    {description && <p class="card-description">{description}</p>}
+    
+    {tags.length > 0 && (
+      <div class="card-tags">
+        {tags.map(tag => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+    
+    <slot />
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    background: var(--color-bg);
+    border: 3px solid var(--color-text);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--transition-bounce);
+    box-shadow: var(--shadow-cartoon);
+  }
+  
+  .card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-cartoon-lg);
+  }
+  
+  .card-accent {
+    height: 6px;
+    background: var(--color-accent);
+  }
+  
+  .card-project .card-accent {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+  }
+  
+  .card-blog .card-accent {
+    background: linear-gradient(90deg, var(--color-tertiary), var(--color-secondary));
+  }
+  
+  .card-content {
+    padding: var(--space-lg);
+  }
+  
+  .card-date {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+  
+  .card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  
+  .card-link:hover {
+    color: var(--color-accent);
+  }
+  
+  .external-icon {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  
+  .card-description {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+  }
+  
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+  
+  .card-tags .tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+</style>
+

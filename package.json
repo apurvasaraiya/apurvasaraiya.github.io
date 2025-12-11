@@ -1,0 +1,15 @@
+{
+  "name": "personal-website",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build:site": "astro build",
+    "build:gh-pages": "astro build --base /personal-website/",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.16.5"
+  }
+}

@@ -1,0 +1,544 @@
+---
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+
+const featuredProjects = [
+  {
+    title: 'Project Alpha',
+    description: 'A revolutionary app that changes how people interact with data.',
+    tags: ['React', 'TypeScript', 'Node.js'],
+    href: 'https://github.com',
+  },
+  {
+    title: 'Creative Dashboard',
+    description: 'Beautiful analytics dashboard with real-time updates.',
+    tags: ['Vue', 'D3.js', 'PostgreSQL'],
+    href: 'https://github.com',
+  },
+  {
+    title: 'Mobile Magic',
+    description: 'Cross-platform mobile app with delightful animations.',
+    tags: ['React Native', 'Expo'],
+    href: 'https://github.com',
+  },
+];
+
+const recentPosts = [
+  {
+    title: 'Building Accessible Web Apps',
+    excerpt: 'Learn how to create inclusive experiences that work for everyone.',
+    date: 'Dec 5, 2024',
+    href: '/blog',
+  },
+  {
+    title: 'The Art of Clean Code',
+    excerpt: 'Tips and tricks for writing maintainable, readable code.',
+    date: 'Nov 28, 2024',
+    href: '/blog',
+  },
+];
+---
+
+<Base title="YourName - Developer & Creator">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="blob blob-1 hero-blob-1"></div>
+      <div class="blob blob-2 hero-blob-2"></div>
+      <div class="blob blob-3 hero-blob-3"></div>
+    </div>
+    
+    <div class="container hero-container">
+      <div class="hero-content">
+        <p class="hero-greeting animate-fade-in">Hey there! 👋 I'm</p>
+        <h1 class="hero-title animate-fade-in delay-1">
+          <span class="hero-name">Your Name</span>
+        </h1>
+        <p class="hero-subtitle animate-fade-in delay-2">
+          Developer, creator, and professional coffee drinker. 
+          I build <span class="highlight">delightful digital experiences</span> 
+          that make people smile.
+        </p>
+        <div class="hero-cta animate-fade-in delay-3">
+          <a href="/projects" class="btn btn-primary">
+            See My Work
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="/blog" class="btn btn-outline">Read My Blog</a>
+        </div>
+      </div>
+      
+      <div class="hero-visual animate-fade-in delay-4">
+        <div class="hero-avatar">
+          <div class="avatar-shape">
+            <span class="avatar-emoji">🧑‍💻</span>
+          </div>
+          <div class="avatar-orbit">
+            <span class="orbit-icon">⚡</span>
+            <span class="orbit-icon">🎨</span>
+            <span class="orbit-icon">🚀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Me</h2>
+        <div class="squiggle"></div>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I'm a passionate developer who loves turning ideas into reality. 
+            With a background in computer science and years of tinkering with code, 
+            I specialize in creating web applications that are both beautiful and functional.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring new technologies, 
+            contributing to open source, or searching for the perfect cup of coffee. ☕
+          </p>
+        </div>
+        
+        <div class="about-skills">
+          <h3>Things I Love Working With</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <span class="skill-icon">⚛️</span>
+              <span>React</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🦕</span>
+              <span>TypeScript</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🌐</span>
+              <span>Node.js</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🎨</span>
+              <span>CSS</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🐍</span>
+              <span>Python</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-icon">🗄️</span>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="section projects-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <div class="squiggle"></div>
+      </div>
+      
+      <div class="projects-grid">
+        {featuredProjects.map((project, i) => (
+          <div class={`animate-fade-in delay-${i + 1}`}>
+            <Card 
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              href={project.href}
+              variant="project"
+            />
+          </div>
+        ))}
+      </div>
+      
+      <div class="section-cta">
+        <a href="/projects" class="btn btn-secondary">
+          View All Projects →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview Section -->
+  <section class="section blog-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>Latest Posts</h2>
+        <div class="squiggle"></div>
+      </div>
+      
+      <div class="blog-grid">
+        {recentPosts.map((post, i) => (
+          <div class={`animate-fade-in delay-${i + 1}`}>
+            <Card 
+              title={post.title}
+              description={post.excerpt}
+              date={post.date}
+              href={post.href}
+              variant="blog"
+            />
+          </div>
+        ))}
+      </div>
+      
+      <div class="section-cta">
+        <a href="/blog" class="btn btn-secondary">
+          Read All Posts →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-blob blob blob-1"></div>
+        <div class="cta-content">
+          <h2>Let's Work Together!</h2>
+          <p>Have a project in mind? I'd love to hear about it.</p>
+          <a href="mailto:hello@example.com" class="btn btn-primary">
+            Get In Touch
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero Section */
+  .hero {
+    position: relative;
+    padding: var(--space-3xl) 0;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  
+  .hero-blob-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+  }
+  
+  .hero-blob-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    right: 10%;
+  }
+  
+  .hero-blob-3 {
+    width: 200px;
+    height: 200px;
+    top: 30%;
+    right: -50px;
+  }
+  
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+  
+  .hero-greeting {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .hero-title {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .hero-name {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-accent), #ff8e8e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 500px;
+    margin-bottom: var(--space-xl);
+  }
+  
+  .highlight {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+  
+  /* Hero Visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-avatar {
+    position: relative;
+    width: 280px;
+    height: 280px;
+  }
+  
+  .avatar-shape {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-tertiary));
+    border: 4px solid var(--color-text);
+    border-radius: var(--radius-blob);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-cartoon-lg);
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .avatar-emoji {
+    font-size: 8rem;
+  }
+  
+  .avatar-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation: spin 20s linear infinite;
+  }
+  
+  .orbit-icon {
+    position: absolute;
+    font-size: 2rem;
+    animation: counter-spin 20s linear infinite;
+  }
+  
+  .orbit-icon:nth-child(1) {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .orbit-icon:nth-child(2) {
+    bottom: 0;
+    left: -20px;
+  }
+  
+  .orbit-icon:nth-child(3) {
+    bottom: 0;
+    right: -20px;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes counter-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .squiggle {
+    width: 80px;
+    height: 8px;
+    margin: var(--space-md) auto 0;
+    background: var(--color-accent);
+    border-radius: 4px;
+    transform: rotate(-2deg);
+  }
+  
+  /* About Section */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+  
+  .about-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+  
+  .about-skills h3 {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-alt);
+    border: 2px solid var(--color-text);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    transition: all var(--transition-bounce);
+  }
+  
+  .skill-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-cartoon);
+  }
+  
+  .skill-icon {
+    font-size: 1.5rem;
+  }
+  
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+  }
+  
+  /* Blog Grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Section CTA */
+  .section-cta {
+    text-align: center;
+    margin-top: var(--space-2xl);
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    padding-bottom: var(--space-3xl);
+  }
+  
+  .cta-card {
+    position: relative;
+    background: var(--color-bg-alt);
+    border: 3px solid var(--color-text);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xl);
+    text-align: center;
+    overflow: hidden;
+    box-shadow: var(--shadow-cartoon-lg);
+  }
+  
+  .cta-blob {
+    width: 200px;
+    height: 200px;
+    top: -80px;
+    right: -60px;
+  }
+  
+  .cta-content {
+    position: relative;
+  }
+  
+  .cta-content h2 {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .cta-content p {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    margin-bottom: var(--space-lg);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: var(--space-2xl) 0;
+    }
+    
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-cta {
+      justify-content: center;
+    }
+    
+    .hero-visual {
+      order: -1;
+    }
+    
+    .hero-avatar {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .avatar-emoji {
+      font-size: 5rem;
+    }
+    
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

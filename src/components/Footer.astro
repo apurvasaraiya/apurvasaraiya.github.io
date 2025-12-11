@@ -1,0 +1,163 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-blob blob blob-2"></div>
+  <div class="container footer-container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-logo">✨ YourName</span>
+        <p class="footer-tagline">Building cool stuff, one pixel at a time.</p>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>
+        Made with 
+        <span class="heart" aria-label="love">💖</span> 
+        and lots of 
+        <span aria-label="coffee">☕</span>
+      </p>
+      <p class="copyright">© {currentYear} YourName. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    margin-top: auto;
+    padding: var(--space-3xl) 0 var(--space-xl);
+    background: var(--color-bg-alt);
+    border-top: 3px solid var(--color-text);
+    overflow: hidden;
+  }
+  
+  .footer-blob {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -50px;
+    opacity: 0.3;
+  }
+  
+  .footer-container {
+    position: relative;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .footer-brand {
+    max-width: 300px;
+  }
+  
+  .footer-logo {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .footer-tagline {
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: var(--space-3xl);
+  }
+  
+  .footer-col h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+  }
+  
+  .footer-col ul {
+    list-style: none;
+  }
+  
+  .footer-col li {
+    margin-bottom: var(--space-xs);
+  }
+  
+  .footer-col a {
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+  
+  .footer-col a:hover {
+    color: var(--color-accent);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: var(--space-xl);
+    border-top: 2px dashed var(--color-text);
+  }
+  
+  .footer-bottom p {
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-muted);
+  }
+  
+  .heart {
+    display: inline-block;
+    animation: pulse 1s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  .copyright {
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .footer-brand {
+      max-width: none;
+    }
+    
+    .footer-links {
+      justify-content: center;
+    }
+  }
+</style>
+
