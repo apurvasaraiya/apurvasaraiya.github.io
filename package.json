@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build:site": "astro build",
-    "build:gh-pages": "astro build --base /personal-website/",
+    "build:gh-pages": "astro build --base /",
     "preview": "astro preview",
     "astro": "astro"
   },
