@@ -9,7 +9,11 @@ const socialLinks = [
 <nav class="nav">
   <div class="nav-container container">
     <a href="/" class="nav-logo">
-      <span class="logo-text"><span class="logo-icon">&lt;/&gt;</span> Apurva</span>
+      <span class="logo-text">
+        <span class="logo-bracket logo-bracket-open">&lt;</span>
+        <span class="logo-name">Apurva</span>
+        <span class="logo-bracket logo-bracket-close">&gt;</span>
+      </span>
     </a>
     
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -84,21 +88,36 @@ const socialLinks = [
   .logo-text {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0;
+    font-family: 'Courier New', monospace;
   }
   
-  .logo-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .logo-bracket {
+    display: inline-block;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  
+  .logo-bracket-open {
+    margin-right: 0.1rem;
+  }
+  
+  .logo-bracket-close {
+    margin-left: 0.1rem;
+  }
+  
+  .logo-name {
+    display: inline-block;
     background: linear-gradient(135deg, var(--color-accent), #ff8e8e);
     color: white;
-    font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     font-weight: 700;
-    padding: 0.2rem 0.4rem;
-    border-radius: 6px;
-    letter-spacing: -1px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    line-height: 1;
   }
   
   .nav-toggle {
@@ -237,52 +256,72 @@ const socialLinks = [
     margin-left: var(--space-xs);
   }
   
-  /* Mobile */
-  @media (max-width: 768px) {
+  /* Mobile and Tablet */
+  @media (max-width: 1024px) {
     .nav-toggle {
-      display: block;
-      z-index: 101;
+      display: none;
     }
     
     .nav-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(300px, 80vw);
-      height: 100vh;
-      flex-direction: column;
-      justify-content: center;
-      gap: var(--space-2xl);
-      padding: var(--space-2xl);
-      background: var(--color-bg);
-      border-left: 3px solid var(--color-text);
-      transform: translateX(100%);
-      transition: transform var(--transition-normal);
-    }
-    
-    .nav-menu.open {
-      transform: translateX(0);
-    }
-    
-    .nav-links {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .nav-link {
-      font-size: 1.25rem;
-    }
-    
-    .nav-toggle[aria-expanded="true"] .hamburger {
+      position: static;
+      transform: none;
+      width: auto;
+      height: auto;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: var(--space-xs);
+      padding: 0;
       background: transparent;
+      border: none;
     }
     
-    .nav-toggle[aria-expanded="true"] .hamburger::before {
-      transform: rotate(45deg) translate(5px, 6px);
+    .nav-social {
+      display: flex;
+      gap: var(--space-xs);
     }
     
-    .nav-toggle[aria-expanded="true"] .hamburger::after {
-      transform: rotate(-45deg) translate(5px, -6px);
+    .social-link {
+      transition: none !important;
+      overflow: hidden !important;
+      pointer-events: auto;
+    }
+    
+    .social-link:hover {
+      width: 40px !important;
+      border-radius: 50% !important;
+      padding: 0 !important;
+      gap: 0 !important;
+      justify-content: center !important;
+      background: var(--color-bg-alt) !important;
+    }
+    
+    .social-link svg {
+      transition: none !important;
+    }
+    
+    .social-link:hover svg {
+      transform: none !important;
+    }
+    
+    .social-username {
+      display: none !important;
+      opacity: 0 !important;
+      max-width: 0 !important;
+      margin-left: 0 !important;
+    }
+    
+    .social-link:hover .social-username {
+      display: none !important;
+      opacity: 0 !important;
+      max-width: 0 !important;
+      margin-left: 0 !important;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    .nav-container {
+      gap: var(--space-md);
     }
   }
 </style>
@@ -291,9 +330,12 @@ const socialLinks = [
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.querySelector('.nav-menu');
   
-  toggle?.addEventListener('click', () => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!isOpen));
-    menu?.classList.toggle('open');
-  });
+  // Only add toggle functionality if toggle button exists (desktop)
+  if (toggle && window.innerWidth > 1024) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      menu?.classList.toggle('open');
+    });
+  }
 </script>

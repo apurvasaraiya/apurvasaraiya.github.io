@@ -153,30 +153,44 @@ const featuredProjects = [
         <div class="squiggle"></div>
       </div>
       
-      <div class="projects-scroll-container">
-        <div class="projects-grid-scroll">
-          {featuredProjects.map((project, i) => (
-            <div class="project-item" data-project-index={i}>
-              <Card 
-                title={project.title}
-                description={project.description}
-                tags={project.tags}
-                href={project.href}
-                variant="project"
-              />
+      <div class="projects-scroll-wrapper">
+        <button class="scroll-button scroll-button-left" aria-label="Scroll left">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="scroll-button scroll-button-right" aria-label="Scroll right">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="projects-scroll-container">
+          <div class="projects-grid-scroll" id="projects-scroll">
+            {featuredProjects.map((project, i) => (
+              <div class="project-item" data-project-index={i}>
+                <Card 
+                  title={project.title}
+                  description={project.description}
+                  tags={project.tags}
+                  href={project.href}
+                  variant="project"
+                />
+              </div>
+            ))}
+            <div class="projects-duplicate" id="projects-duplicate">
+              {featuredProjects.map((project, i) => (
+                <div class="project-item" data-project-index={i}>
+                  <Card 
+                    title={project.title}
+                    description={project.description}
+                    tags={project.tags}
+                    href={project.href}
+                    variant="project"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-          {featuredProjects.map((project, i) => (
-            <div class="project-item" data-project-index={i}>
-              <Card 
-                title={project.title}
-                description={project.description}
-                tags={project.tags}
-                href={project.href}
-                variant="project"
-              />
-            </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>
@@ -455,43 +469,140 @@ const featuredProjects = [
     75% { transform: translateY(-5px) rotate(10deg); }
   }
   
-  /* Projects Scroll Container */
-  .projects-scroll-container {
-    overflow: hidden;
-    padding: var(--space-md) 0;
+  /* Projects Scroll Wrapper */
+  .projects-scroll-wrapper {
     position: relative;
     width: 100%;
     max-width: calc(4 * 300px + 3 * var(--space-lg));
     margin: 0 auto;
-    contain: layout style paint;
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 5%,
-      black 95%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 5%,
-      black 95%,
-      transparent 100%
-    );
+  }
+  
+  /* Projects Scroll Container */
+  .projects-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: var(--space-md) 0;
+    width: 100%;
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .projects-scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  /* Scroll Navigation Buttons */
+  .scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid var(--color-text);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-bounce);
+    opacity: 0.7;
+    pointer-events: auto;
+  }
+  
+  .scroll-button:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--shadow-cartoon);
+  }
+  
+  .scroll-button:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  .scroll-button-left {
+    left: -40px;
+  }
+  
+  .scroll-button-right {
+    right: -40px;
+  }
+  
+  /* Responsive button positioning */
+  @media (max-width: 768px) {
+    .scroll-button {
+      width: 56px;
+      height: 56px;
+    }
+    
+    .scroll-button svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .scroll-button-left {
+      left: -28px;
+    }
+    
+    .scroll-button-right {
+      right: -28px;
+    }
+  }
+  
+  .scroll-button svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  /* Hide buttons when at edges */
+  .projects-scroll-wrapper.at-start .scroll-button-left {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  .projects-scroll-wrapper.at-end .scroll-button-right {
+    opacity: 0.3;
+    pointer-events: none;
   }
   
   .projects-grid-scroll {
     display: flex;
     gap: var(--space-lg);
-    animation: scroll-horizontal 30s linear infinite;
     width: max-content;
+  }
+  
+  .projects-scroll-container.manual-scrolling .projects-duplicate {
+    display: none;
+  }
+  
+  .projects-duplicate {
+    display: flex;
+    gap: var(--space-lg);
+  }
+  
+  /* Prevent empty space when animation resumes */
+  .projects-scroll-container.manual-scrolling {
+    scroll-behavior: smooth;
   }
   
   .project-item {
     flex-shrink: 0;
     width: 300px;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, filter 0.3s ease-out;
     position: relative;
+    will-change: transform;
+    opacity: 0.4;
+    filter: grayscale(0.6);
+  }
+  
+  .project-item.fully-visible {
+    opacity: 1;
+    filter: grayscale(0);
   }
   
   .project-item.fully-visible:hover {
@@ -499,21 +610,8 @@ const featuredProjects = [
     z-index: 10;
   }
   
-  .project-item {
-    will-change: transform;
-  }
-  
-  @keyframes scroll-horizontal {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-50% - var(--space-lg) / 2));
-    }
-  }
-  
-  .projects-scroll-container:hover .projects-grid-scroll {
-    animation-play-state: paused;
+  .projects-scroll-container.auto-scrolling {
+    scroll-behavior: auto;
   }
   
   /* Coming Soon Card */
@@ -656,31 +754,27 @@ const featuredProjects = [
     const containerRect = container.getBoundingClientRect();
     const containerLeft = containerRect.left;
     const containerRight = containerRect.right;
-    const containerWidth = containerRect.width;
     
     cards.forEach(card => {
       const cardRect = card.getBoundingClientRect();
       const cardLeft = cardRect.left;
       const cardRight = cardRect.right;
       const cardWidth = cardRect.width;
-      const cardCenter = cardLeft + cardWidth / 2;
       
-      // Check if card is fully visible within container bounds
-      // Card must be at least 95% visible and centered within container
-      const minVisibleRatio = 0.95;
-      const padding = 60; // Padding to ensure card doesn't overflow on scale
-      
+      // Calculate how much of the card is visible
       const visibleLeft = Math.max(cardLeft, containerLeft);
       const visibleRight = Math.min(cardRight, containerRight);
       const visibleWidth = Math.max(0, visibleRight - visibleLeft);
       const visibleRatio = visibleWidth / cardWidth;
       
-      const isFullyVisible = 
-        visibleRatio >= minVisibleRatio &&
-        cardCenter >= containerLeft + padding && 
-        cardCenter <= containerRight - padding &&
-        cardLeft >= containerLeft &&
-        cardRight <= containerRight;
+      // Card is considered fully visible if at least 80% is visible
+      // This is less strict than before to ensure all reasonably visible cards get the class
+      const minVisibleRatio = 0.8;
+      
+      // Check if card is within container bounds (not completely outside)
+      const isWithinBounds = cardRight > containerLeft && cardLeft < containerRight;
+      
+      const isFullyVisible = visibleRatio >= minVisibleRatio && isWithinBounds;
       
       if (isFullyVisible) {
         card.classList.add('fully-visible');
@@ -690,10 +784,287 @@ const featuredProjects = [
     });
   }
   
-  // Check on scroll and hover
+  // Handle manual scrolling and auto-resume
+  const wrapper = document.querySelector('.projects-scroll-wrapper');
   const container = document.querySelector('.projects-scroll-container');
-  if (container) {
+  const scrollContent = document.querySelector('.projects-grid-scroll');
+  const duplicateSection = document.querySelector('.projects-duplicate');
+  const scrollButtonLeft = document.querySelector('.scroll-button-left');
+  const scrollButtonRight = document.querySelector('.scroll-button-right');
+  if (container && scrollContent && wrapper) {
     const cards = document.querySelectorAll('.project-item');
+    let manualScrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isManuallyScrolling = false;
+    let lastScrollLeft = container.scrollLeft;
+    let isUserScrolling = false;
+    let autoScrollAnimationFrame: number | null = null;
+    let autoScrollStartTime: number | null = null;
+    let autoScrollSpeed = 0.5; // pixels per frame (adjust for speed)
+    let isProgrammaticScroll = false;
+    let lastProgrammaticScroll = -1; // Track the last programmatic scroll position
+    
+    // Calculate the width of one set of projects (original + duplicate)
+    function getSingleSetWidth() {
+      if (!scrollContent) return 0;
+      return scrollContent.scrollWidth / 2;
+    }
+    
+    // Update button visibility based on scroll position
+    function updateButtonVisibility() {
+      if (!container || !wrapper) return;
+      const scrollLeft = container.scrollLeft;
+      const scrollWidth = container.scrollWidth;
+      const clientWidth = container.clientWidth;
+      const singleSetWidth = getSingleSetWidth();
+      
+      // For infinite scroll, we check if we're at the start or end of the visible set
+      const isAtStart = scrollLeft <= 1;
+      const isAtEnd = scrollLeft >= singleSetWidth - clientWidth - 1;
+      
+      if (isAtStart) {
+        wrapper.classList.add('at-start');
+        wrapper.classList.remove('at-end');
+      } else if (isAtEnd) {
+        wrapper.classList.add('at-end');
+        wrapper.classList.remove('at-start');
+      } else {
+        wrapper.classList.remove('at-start', 'at-end');
+      }
+    }
+    
+    // Scroll functions with infinite looping
+    function scrollLeft() {
+      if (!container) return;
+      const scrollAmount = 320; // Scroll by one card width + gap
+      const singleSetWidth = getSingleSetWidth();
+      const currentScroll = container.scrollLeft;
+      const clientWidth = container.clientWidth;
+      
+      isProgrammaticScroll = true;
+      
+      // If at the start, loop to the end
+      if (currentScroll <= 1) {
+        const maxScroll = singleSetWidth - clientWidth;
+        container.scrollTo({
+          left: maxScroll,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+      
+      setTimeout(() => {
+        isProgrammaticScroll = false;
+      }, 100);
+      
+      // Pause auto-scroll when using buttons
+      if (!isManuallyScrolling) {
+        isManuallyScrolling = true;
+        isUserScrolling = true;
+        container.classList.add('manual-scrolling');
+        autoScrollStartTime = null;
+      }
+      
+      if (manualScrollTimeout) {
+        clearTimeout(manualScrollTimeout);
+      }
+      
+      manualScrollTimeout = setTimeout(() => {
+        isManuallyScrolling = false;
+        isUserScrolling = false;
+        container.classList.remove('manual-scrolling');
+        autoScrollStartTime = null;
+      }, 2000);
+    }
+    
+    function scrollRight() {
+      if (!container) return;
+      const scrollAmount = 320; // Scroll by one card width + gap
+      const singleSetWidth = getSingleSetWidth();
+      const currentScroll = container.scrollLeft;
+      const clientWidth = container.clientWidth;
+      const maxScroll = singleSetWidth - clientWidth;
+      
+      isProgrammaticScroll = true;
+      
+      // If at or near the end, loop to the start
+      if (currentScroll >= maxScroll - 1) {
+        container.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+      
+      setTimeout(() => {
+        isProgrammaticScroll = false;
+      }, 100);
+      
+      // Pause auto-scroll when using buttons
+      if (!isManuallyScrolling) {
+        isManuallyScrolling = true;
+        isUserScrolling = true;
+        container.classList.add('manual-scrolling');
+        autoScrollStartTime = null;
+      }
+      
+      if (manualScrollTimeout) {
+        clearTimeout(manualScrollTimeout);
+      }
+      
+      manualScrollTimeout = setTimeout(() => {
+        isManuallyScrolling = false;
+        isUserScrolling = false;
+        container.classList.remove('manual-scrolling');
+        autoScrollStartTime = null;
+      }, 2000);
+    }
+    
+    // Add button click handlers
+    if (scrollButtonLeft) {
+      scrollButtonLeft.addEventListener('click', scrollLeft);
+    }
+    if (scrollButtonRight) {
+      scrollButtonRight.addEventListener('click', scrollRight);
+    }
+    
+    // Auto-scroll function using requestAnimationFrame
+    function autoScroll(timestamp: number) {
+      if (!container || !scrollContent) return;
+      
+      if (isManuallyScrolling || isUserScrolling) {
+        autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
+        return;
+      }
+      
+      if (!autoScrollStartTime) {
+        autoScrollStartTime = timestamp;
+      }
+      
+      const singleSetWidth = getSingleSetWidth();
+      if (singleSetWidth === 0) {
+        autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
+        return;
+      }
+      
+      // Calculate target scroll position (looping)
+      const maxScroll = singleSetWidth;
+      let targetScroll = container.scrollLeft + autoScrollSpeed;
+      
+      // Loop back to start when reaching the end (with small buffer to avoid flicker)
+      if (targetScroll >= maxScroll - 1) {
+        targetScroll = 0;
+      }
+      
+      // Update scroll position programmatically
+      isProgrammaticScroll = true;
+      lastProgrammaticScroll = targetScroll;
+      container.scrollLeft = targetScroll;
+      // Clear flag after scroll event has time to fire
+      setTimeout(() => {
+        isProgrammaticScroll = false;
+      }, 10);
+      
+      autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
+    }
+    
+    // Detect manual scrolling
+    container.addEventListener('scroll', () => {
+      const currentScrollLeft = container.scrollLeft;
+      
+      // Update button visibility
+      updateButtonVisibility();
+      
+      // Ignore programmatic scrolling (check if scroll position matches what we set)
+      if (isProgrammaticScroll || Math.abs(currentScrollLeft - lastProgrammaticScroll) < 2) {
+        lastScrollLeft = currentScrollLeft;
+        if (isProgrammaticScroll) {
+          lastProgrammaticScroll = currentScrollLeft;
+        }
+        return;
+      }
+      
+      const scrollDelta = Math.abs(currentScrollLeft - lastScrollLeft);
+      
+      // Check if this is user-initiated scrolling
+      if (scrollDelta > 1) {
+        isUserScrolling = true;
+        
+        if (!isManuallyScrolling) {
+          // First time manual scrolling - pause auto-scroll
+          isManuallyScrolling = true;
+          container.classList.add('manual-scrolling');
+          autoScrollStartTime = null; // Reset animation timing
+        }
+        
+        // Clear existing timeout
+        if (manualScrollTimeout) {
+          clearTimeout(manualScrollTimeout);
+        }
+        
+        // Auto-resume after user stops scrolling
+        manualScrollTimeout = setTimeout(() => {
+          isManuallyScrolling = false;
+          isUserScrolling = false;
+          container.classList.remove('manual-scrolling');
+          autoScrollStartTime = null; // Reset for smooth resume
+          // Don't reset scroll position - continue from where user left off
+        }, 2000); // Resume after 2 seconds of no scrolling
+      }
+      
+      lastScrollLeft = currentScrollLeft;
+    }, { passive: true });
+    
+    // Also detect wheel events for better responsiveness
+    container.addEventListener('wheel', (e: Event) => {
+      const wheelEvent = e as WheelEvent;
+      // Only handle horizontal scrolling
+      if (Math.abs(wheelEvent.deltaX) > Math.abs(wheelEvent.deltaY)) {
+        if (!isManuallyScrolling) {
+          isManuallyScrolling = true;
+          isUserScrolling = true;
+          container.classList.add('manual-scrolling');
+          autoScrollStartTime = null;
+        }
+        
+        if (manualScrollTimeout) {
+          clearTimeout(manualScrollTimeout);
+        }
+        
+        manualScrollTimeout = setTimeout(() => {
+          isManuallyScrolling = false;
+          isUserScrolling = false;
+          container.classList.remove('manual-scrolling');
+          autoScrollStartTime = null;
+        }, 2000);
+      }
+    }, { passive: true });
+    
+    // Pause on hover
+    container.addEventListener('mouseenter', () => {
+      if (!isManuallyScrolling) {
+        isManuallyScrolling = true;
+        container.classList.add('manual-scrolling');
+      }
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      if (!isUserScrolling) {
+        isManuallyScrolling = false;
+        container.classList.remove('manual-scrolling');
+        autoScrollStartTime = null;
+      }
+    });
+    
+    // Start auto-scroll
+    autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
     
     // Use Intersection Observer for better performance
     const observer = new IntersectionObserver((entries) => {
@@ -717,8 +1088,10 @@ const featuredProjects = [
     
     // Initial check
     checkCardVisibility();
+    updateButtonVisibility();
     
     // Check periodically during animation (less frequently)
     setInterval(checkCardVisibility, 200);
+    setInterval(updateButtonVisibility, 100);
   }
 </script>
