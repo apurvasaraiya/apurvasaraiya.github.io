@@ -145,11 +145,11 @@ const featuredProjects = [
     </div>
   </section>
 
-  <!-- Featured Projects Section -->
+  <!-- My Projects Section -->
   <section class="section projects-preview">
     <div class="container">
       <div class="section-header">
-        <h2>Featured Projects</h2>
+        <h2>My Projects</h2>
         <div class="squiggle"></div>
       </div>
       
@@ -469,12 +469,23 @@ const featuredProjects = [
     75% { transform: translateY(-5px) rotate(10deg); }
   }
   
+  /* Projects Section */
+  .projects-preview {
+    overflow: visible;
+  }
+  
+  .projects-preview .container {
+    overflow: visible;
+  }
+  
   /* Projects Scroll Wrapper */
   .projects-scroll-wrapper {
     position: relative;
     width: 100%;
     max-width: calc(4 * 300px + 3 * var(--space-lg));
     margin: 0 auto;
+    padding: 0 50px; /* Add padding for buttons */
+    overflow: visible;
   }
   
   /* Projects Scroll Container */
@@ -534,23 +545,10 @@ const featuredProjects = [
   }
   
   /* Responsive button positioning */
-  @media (max-width: 768px) {
+  /* Hide buttons on tablet and mobile (touch devices) */
+  @media (max-width: 1024px) {
     .scroll-button {
-      width: 56px;
-      height: 56px;
-    }
-    
-    .scroll-button svg {
-      width: 24px;
-      height: 24px;
-    }
-    
-    .scroll-button-left {
-      left: -28px;
-    }
-    
-    .scroll-button-right {
-      right: -28px;
+      display: none;
     }
   }
   
@@ -832,41 +830,21 @@ const featuredProjects = [
       }
     }
     
-    // Scroll functions with infinite looping
-    function scrollLeft() {
+    // Scroll functions - simplified for reliability
+    function scrollLeftFn() {
       if (!container) return;
       const scrollAmount = 320; // Scroll by one card width + gap
-      const singleSetWidth = getSingleSetWidth();
-      const currentScroll = container.scrollLeft;
-      const clientWidth = container.clientWidth;
-      
-      isProgrammaticScroll = true;
-      
-      // If at the start, loop to the end
-      if (currentScroll <= 1) {
-        const maxScroll = singleSetWidth - clientWidth;
-        container.scrollTo({
-          left: maxScroll,
-          behavior: 'smooth'
-        });
-      } else {
-        container.scrollBy({
-          left: -scrollAmount,
-          behavior: 'smooth'
-        });
-      }
-      
-      setTimeout(() => {
-        isProgrammaticScroll = false;
-      }, 100);
       
       // Pause auto-scroll when using buttons
-      if (!isManuallyScrolling) {
-        isManuallyScrolling = true;
-        isUserScrolling = true;
-        container.classList.add('manual-scrolling');
-        autoScrollStartTime = null;
-      }
+      isManuallyScrolling = true;
+      isUserScrolling = true;
+      container.classList.add('manual-scrolling');
+      autoScrollStartTime = null;
+      
+      container.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
       
       if (manualScrollTimeout) {
         clearTimeout(manualScrollTimeout);
@@ -877,43 +855,23 @@ const featuredProjects = [
         isUserScrolling = false;
         container.classList.remove('manual-scrolling');
         autoScrollStartTime = null;
-      }, 2000);
+      }, 3000);
     }
     
-    function scrollRight() {
+    function scrollRightFn() {
       if (!container) return;
       const scrollAmount = 320; // Scroll by one card width + gap
-      const singleSetWidth = getSingleSetWidth();
-      const currentScroll = container.scrollLeft;
-      const clientWidth = container.clientWidth;
-      const maxScroll = singleSetWidth - clientWidth;
-      
-      isProgrammaticScroll = true;
-      
-      // If at or near the end, loop to the start
-      if (currentScroll >= maxScroll - 1) {
-        container.scrollTo({
-          left: 0,
-          behavior: 'smooth'
-        });
-      } else {
-        container.scrollBy({
-          left: scrollAmount,
-          behavior: 'smooth'
-        });
-      }
-      
-      setTimeout(() => {
-        isProgrammaticScroll = false;
-      }, 100);
       
       // Pause auto-scroll when using buttons
-      if (!isManuallyScrolling) {
-        isManuallyScrolling = true;
-        isUserScrolling = true;
-        container.classList.add('manual-scrolling');
-        autoScrollStartTime = null;
-      }
+      isManuallyScrolling = true;
+      isUserScrolling = true;
+      container.classList.add('manual-scrolling');
+      autoScrollStartTime = null;
+      
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
       
       if (manualScrollTimeout) {
         clearTimeout(manualScrollTimeout);
@@ -924,15 +882,15 @@ const featuredProjects = [
         isUserScrolling = false;
         container.classList.remove('manual-scrolling');
         autoScrollStartTime = null;
-      }, 2000);
+      }, 3000);
     }
     
     // Add button click handlers
     if (scrollButtonLeft) {
-      scrollButtonLeft.addEventListener('click', scrollLeft);
+      scrollButtonLeft.addEventListener('click', scrollLeftFn);
     }
     if (scrollButtonRight) {
-      scrollButtonRight.addEventListener('click', scrollRight);
+      scrollButtonRight.addEventListener('click', scrollRightFn);
     }
     
     // Auto-scroll function using requestAnimationFrame
