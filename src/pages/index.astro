@@ -487,6 +487,12 @@ const featuredProjects = [
     padding: 0 50px; /* Add padding for buttons */
     overflow: visible;
   }
+
+  @media (max-width: 1024px) {
+    .projects-scroll-wrapper {
+      padding: 0; /* Remove padding when buttons are hidden */
+    }
+  }
   
   /* Projects Scroll Container */
   .projects-scroll-container {
@@ -574,9 +580,9 @@ const featuredProjects = [
     width: max-content;
   }
   
-  .projects-scroll-container.manual-scrolling .projects-duplicate {
+  /* .projects-scroll-container.manual-scrolling .projects-duplicate {
     display: none;
-  }
+  } */
   
   .projects-duplicate {
     display: flex;
@@ -933,64 +939,39 @@ const featuredProjects = [
       autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
     }
     
-    // Detect manual scrolling
+    // Detect manual scrolling - Simplified to avoid fighting with auto-scroll
+    // We only use the scroll event to keep the resume timer alive if the user is ALREADY manually scrolling
     container.addEventListener('scroll', () => {
       const currentScrollLeft = container.scrollLeft;
       
       // Update button visibility
       updateButtonVisibility();
       
-      // Ignore programmatic scrolling (check if scroll position matches what we set)
-      if (isProgrammaticScroll || Math.abs(currentScrollLeft - lastProgrammaticScroll) < 2) {
-        lastScrollLeft = currentScrollLeft;
-        if (isProgrammaticScroll) {
-          lastProgrammaticScroll = currentScrollLeft;
-        }
-        return;
-      }
-      
-      const scrollDelta = Math.abs(currentScrollLeft - lastScrollLeft);
-      
-      // Check if this is user-initiated scrolling
-      if (scrollDelta > 1) {
-        isUserScrolling = true;
+      // If we are already in manual scrolling mode (triggered by wheel/touch/hover),
+      // we want to keep resetting the resume timer as long as scrolling is happening.
+      if (isManuallyScrolling && manualScrollTimeout) {
+        clearTimeout(manualScrollTimeout);
         
-        if (!isManuallyScrolling) {
-          // First time manual scrolling - pause auto-scroll
-          isManuallyScrolling = true;
-          container.classList.add('manual-scrolling');
-          autoScrollStartTime = null; // Reset animation timing
-        }
-        
-        // Clear existing timeout
-        if (manualScrollTimeout) {
-          clearTimeout(manualScrollTimeout);
-        }
-        
-        // Auto-resume after user stops scrolling
+        // Schedule resume
         manualScrollTimeout = setTimeout(() => {
           isManuallyScrolling = false;
-          isUserScrolling = false;
           container.classList.remove('manual-scrolling');
-          autoScrollStartTime = null; // Reset for smooth resume
-          // Don't reset scroll position - continue from where user left off
-        }, 2000); // Resume after 2 seconds of no scrolling
+          autoScrollStartTime = null;
+        }, 2000);
       }
       
       lastScrollLeft = currentScrollLeft;
     }, { passive: true });
     
-    // Also detect wheel events for better responsiveness
+    // Use explicit events to trigger manual scrolling mode
     container.addEventListener('wheel', (e: Event) => {
       const wheelEvent = e as WheelEvent;
       // Only handle horizontal scrolling
       if (Math.abs(wheelEvent.deltaX) > Math.abs(wheelEvent.deltaY)) {
-        if (!isManuallyScrolling) {
-          isManuallyScrolling = true;
-          isUserScrolling = true;
-          container.classList.add('manual-scrolling');
-          autoScrollStartTime = null;
-        }
+        // Enter manual mode immediately
+        isManuallyScrolling = true;
+        container.classList.add('manual-scrolling');
+        autoScrollStartTime = null;
         
         if (manualScrollTimeout) {
           clearTimeout(manualScrollTimeout);
@@ -998,7 +979,6 @@ const featuredProjects = [
         
         manualScrollTimeout = setTimeout(() => {
           isManuallyScrolling = false;
-          isUserScrolling = false;
           container.classList.remove('manual-scrolling');
           autoScrollStartTime = null;
         }, 2000);
@@ -1020,6 +1000,31 @@ const featuredProjects = [
         autoScrollStartTime = null;
       }
     });
+
+    // Touch support for mobile devices
+    container.addEventListener('touchstart', () => {
+      isManuallyScrolling = true;
+      isUserScrolling = true;
+      container.classList.add('manual-scrolling');
+      autoScrollStartTime = null;
+      
+      if (manualScrollTimeout) {
+        clearTimeout(manualScrollTimeout);
+      }
+    }, { passive: true });
+
+    container.addEventListener('touchend', () => {
+      if (manualScrollTimeout) {
+        clearTimeout(manualScrollTimeout);
+      }
+      
+      manualScrollTimeout = setTimeout(() => {
+        isManuallyScrolling = false;
+        isUserScrolling = false;
+        container.classList.remove('manual-scrolling');
+        autoScrollStartTime = null;
+      }, 3000);
+    }, { passive: true });
     
     // Start auto-scroll
     autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
