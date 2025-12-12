@@ -162,6 +162,12 @@ a:focus-visible {
   border-color: var(--color-accent-hover);
 }
 
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  color: white;
+  border-color: var(--color-accent);
+}
+
 .btn-secondary {
   background: var(--color-secondary);
   color: var(--color-text);

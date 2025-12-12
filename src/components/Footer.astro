@@ -11,35 +11,15 @@ const currentYear = new Date().getFullYear();
         <p class="footer-tagline">Building robust systems, one commit at a time.</p>
       </div>
       
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <!-- <li><a href="/blog">Blog</a></li> --> <!-- Hidden for now -->
-          </ul>
-        </div>
-        
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://x.com/a____a07" target="_blank" rel="noopener">X</a></li>
-            <li><a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener">LinkedIn</a></li>
-          </ul>
-        </div>
+      <div class="footer-bottom">
+        <p>
+          Made with 
+          <span class="heart" aria-label="love">💖</span> 
+          and lots of 
+          <span aria-label="coffee">☕</span>
+        </p>
+        <p class="copyright">© {currentYear} Apurva Saraiya. All rights reserved.</p>
       </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>
-        Made with 
-        <span class="heart" aria-label="love">💖</span> 
-        and lots of 
-        <span aria-label="coffee">☕</span>
-      </p>
-      <p class="copyright">© {currentYear} Apurva Saraiya. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -69,8 +49,9 @@ const currentYear = new Date().getFullYear();
   .footer-content {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     gap: var(--space-2xl);
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 0;
   }
   
   .footer-brand {
@@ -127,6 +108,41 @@ const currentYear = new Date().getFullYear();
     margin-bottom: var(--space-xs);
   }
   
+  .footer-connect {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-text-muted);
+    transition: all var(--transition-bounce);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+  }
+  
+  .footer-social-link:hover {
+    color: var(--color-accent);
+    background: var(--color-bg);
+    border-color: var(--color-text);
+    transform: translateX(4px);
+  }
+  
+  .footer-social-link svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .footer-social-link span {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  
   .footer-col a {
     color: var(--color-text-muted);
     transition: color var(--transition-fast);
@@ -137,9 +153,10 @@ const currentYear = new Date().getFullYear();
   }
   
   .footer-bottom {
-    text-align: center;
-    padding-top: var(--space-xl);
-    border-top: 2px dashed var(--color-text);
+    text-align: right;
+    padding-top: 0;
+    border-top: none;
+    margin-top: 0;
   }
   
   .footer-bottom p {
@@ -165,10 +182,15 @@ const currentYear = new Date().getFullYear();
     .footer-content {
       flex-direction: column;
       text-align: center;
+      align-items: center;
     }
     
     .footer-brand {
       max-width: none;
+    }
+    
+    .footer-bottom {
+      text-align: center;
     }
     
     .footer-links {

@@ -1,17 +1,9 @@
 ---
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
-  // { href: '/blog', label: 'Blog' }, // Hidden for now - Blog coming soon
-];
-
 const socialLinks = [
-  { href: 'https://github.com/apurvasaraiya', label: 'GitHub', icon: 'github' },
-  { href: 'https://x.com/a____a07', label: 'X', icon: 'twitter' },
-  { href: 'https://www.linkedin.com/in/apurva-saraiya/', label: 'LinkedIn', icon: 'linkedin' },
+  { href: 'https://github.com/apurvasaraiya', label: 'GitHub', icon: 'github', username: 'apurvasaraiya' },
+  { href: 'https://x.com/a____a07', label: 'X', icon: 'twitter', username: 'a____a07' },
+  { href: 'https://www.linkedin.com/in/apurva-saraiya/', label: 'LinkedIn', icon: 'linkedin', username: 'apurva-saraiya' },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
 <nav class="nav">
@@ -25,19 +17,6 @@ const currentPath = Astro.url.pathname;
     </button>
     
     <div class="nav-menu">
-      <ul class="nav-links">
-        {navLinks.map(link => (
-          <li>
-            <a 
-              href={link.href} 
-              class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-      
       <div class="nav-social">
         {socialLinks.map(link => (
           <a 
@@ -46,6 +25,7 @@ const currentPath = Astro.url.pathname;
             target="_blank" 
             rel="noopener noreferrer"
             aria-label={link.label}
+            data-username={link.username}
           >
             {link.icon === 'github' && (
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -62,6 +42,7 @@ const currentPath = Astro.url.pathname;
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             )}
+            <span class="social-username">{link.username}</span>
           </a>
         ))}
       </div>
@@ -194,6 +175,7 @@ const currentPath = Astro.url.pathname;
   }
   
   .social-link {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,12 +185,56 @@ const currentPath = Astro.url.pathname;
     background: var(--color-bg-alt);
     border: 2px solid var(--color-text);
     border-radius: 50%;
-    transition: all var(--transition-bounce);
+    transition: width 0.35s ease-out,
+                border-radius 0.35s ease-out,
+                background 0.25s ease,
+                padding 0.35s ease-out,
+                gap 0.35s ease-out;
+    overflow: hidden;
+    gap: 0;
+    padding: 0;
   }
   
   .social-link:hover {
     background: var(--color-tertiary);
-    transform: translateY(-3px) rotate(5deg);
+    border-radius: 20px;
+    width: auto;
+    min-width: 40px;
+    padding: 0 var(--space-sm);
+    gap: var(--space-xs);
+    justify-content: flex-start;
+  }
+  
+  .social-link svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.25s ease;
+  }
+  
+  .social-link:hover svg {
+    transform: scale(1.05);
+  }
+  
+  .social-username {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.25s ease 0.15s,
+                max-width 0.35s ease-out 0.1s,
+                margin-left 0.25s ease 0.15s;
+    margin-left: 0;
+  }
+  
+  .social-link:hover .social-username {
+    opacity: 1;
+    max-width: 200px;
+    margin-left: var(--space-xs);
   }
   
   /* Mobile */
