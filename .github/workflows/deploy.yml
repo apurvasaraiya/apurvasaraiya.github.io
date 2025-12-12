@@ -28,7 +28,7 @@ jobs:
         run: bun install
 
       - name: Build
-        run: build:gh-pages
+        run: bun build:gh-pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
