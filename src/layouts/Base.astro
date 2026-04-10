@@ -8,9 +8,9 @@ interface Props {
   description?: string;
 }
 
-const { 
-  title, 
-  description = 'Apurva Saraiya - Software Engineer passionate about backend systems, cloud infrastructure, and distributed systems.' 
+const {
+  title,
+  description = 'Apurva Saraiya - Software Engineer building robust backend systems, cloud infrastructure, and distributed systems.'
 } = Astro.props;
 ---
 
@@ -23,17 +23,18 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    
+
     <!-- Preload fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
+    <div class="noise-overlay"></div>
     <div class="page-wrapper">
       <Nav />
       <main>
@@ -50,9 +51,8 @@ const {
     flex-direction: column;
     min-height: 100vh;
   }
-  
+
   main {
     flex: 1;
   }
 </style>
-

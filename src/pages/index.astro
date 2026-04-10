@@ -5,7 +5,7 @@ import Card from '../components/Card.astro';
 const featuredProjects = [
   {
     title: 'shortly',
-    description: 'A URL shortener service built with Go, focusing on performance and simplicity.',
+    description: 'A URL shortener service built with Go, focusing on high performance, clean architecture, and simplicity.',
     tags: ['Go', 'Backend', 'REST API'],
     href: 'https://github.com/apurvasaraiya/shortly',
   },
@@ -23,10 +23,31 @@ const featuredProjects = [
   },
   {
     title: 'go-grep',
-    description: 'A basic implementation of grep using golang, building regex pattern matching and file searching capabilities.',
+    description: 'A grep implementation in Go with regex pattern matching and file searching capabilities.',
     tags: ['Go', 'CLI', 'Regex'],
     href: 'https://github.com/apurvasaraiya/go-grep',
   },
+];
+
+const skills = [
+  { name: 'Go', category: 'language' },
+  { name: 'Python', category: 'language' },
+  { name: 'Shell', category: 'language' },
+  { name: 'JavaScript', category: 'language' },
+  { name: 'React', category: 'frontend' },
+  { name: 'HTML/CSS', category: 'frontend' },
+  { name: 'Docker', category: 'infra' },
+  { name: 'Kubernetes', category: 'infra' },
+  { name: 'GCP', category: 'infra' },
+  { name: 'AWS', category: 'infra' },
+  { name: 'PostgreSQL', category: 'data' },
+  { name: 'Redis', category: 'data' },
+  { name: 'Kafka', category: 'data' },
+  { name: 'RabbitMQ', category: 'data' },
+  { name: 'Git', category: 'tools' },
+  { name: 'Linux', category: 'tools' },
+  { name: 'Jenkins', category: 'tools' },
+  { name: 'Concourse CI', category: 'tools' },
 ];
 ---
 
@@ -34,110 +55,114 @@ const featuredProjects = [
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-bg">
-      <div class="blob blob-1 hero-blob-1"></div>
-      <div class="blob blob-2 hero-blob-2"></div>
-      <div class="blob blob-3 hero-blob-3"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="hero-grid"></div>
     </div>
-    
+
     <div class="container hero-container">
-      <div class="hero-content">
-        <p class="hero-greeting animate-fade-in">Hey there! 👋 I'm</p>
-        <h1 class="hero-title animate-fade-in delay-1">
-          <span class="hero-name">Apurva Saraiya</span>
-        </h1>
-        <p class="hero-subtitle animate-fade-in delay-2">
-          Software Engineer passionate about building 
-          <span class="highlight">robust backend systems</span>, 
-          <span class="highlight">foundations in AI/ML and data</span>, 
-          and leveraging the power of the cloud.
-        </p>
-        <div class="hero-cta animate-fade-in delay-3">
-          <a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener" class="btn btn-primary">
-            Let's Connect
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener" class="btn btn-outline">
-            View
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-        </div>
+      <div class="hero-badge animate-fade-in">
+        <span class="badge-dot"></span>
+        Available for opportunities
       </div>
-      
-      <div class="hero-visual animate-fade-in delay-4">
-        <div class="hero-avatar">
-          <div class="avatar-shape">
-            <span class="avatar-emoji">🧑‍💻</span>
-          </div>
-          <div class="avatar-orbit">
-            <span class="orbit-icon">⚡</span>
-            <span class="orbit-icon">☁️</span>
-            <span class="orbit-icon">🚀</span>
-          </div>
+
+      <h1 class="hero-title animate-fade-in delay-1">
+        Hi, I'm <span class="text-gradient">Apurva Saraiya</span>
+      </h1>
+
+      <p class="hero-subtitle animate-fade-in delay-2">
+        Software Engineer passionate about building
+        <strong>robust backend systems</strong>,
+        <strong>cloud infrastructure</strong>,
+        and <strong>distributed systems</strong>.
+        Based in Surat, India.
+      </p>
+
+      <div class="hero-cta animate-fade-in delay-3">
+        <a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener" class="btn btn-primary">
+          Let's Connect
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7"/>
+            <path d="M7 7h10v10"/>
+          </svg>
+        </a>
+        <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener" class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+      <div class="hero-stack animate-fade-in delay-4">
+        <span class="stack-label">Currently working with</span>
+        <div class="stack-items">
+          <span class="stack-item">Go</span>
+          <span class="stack-dot"></span>
+          <span class="stack-item">Cloud</span>
+          <span class="stack-dot"></span>
+          <span class="stack-item">CloudFoundry</span>
+          <span class="stack-dot"></span>
+          <span class="stack-item">BOSH</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="section about">
+  <section class="section about" id="about">
     <div class="container">
-      <div class="section-header">
-        <h2>About Me</h2>
-        <div class="squiggle"></div>
-      </div>
-      
+      <div class="section-label animate-fade-in">About</div>
+      <h2 class="section-title animate-fade-in delay-1">A bit about me</h2>
+
       <div class="about-content">
-        <div class="about-text">
+        <div class="about-text animate-fade-in delay-2">
           <p>
-            I'm a Software Engineer passionate about crafting robust backend systems 
-            and leveraging the power of the cloud. I thrive on solving complex problems 
+            I'm a Software Engineer passionate about crafting robust backend systems
+            and leveraging the power of the cloud. I thrive on solving complex problems
             and continuously exploring new technologies.
           </p>
           <p>
-            Currently working on Go, Cloud, CloudFoundry, and BOSH. I'm learning about 
-            Operating Systems, Distributed Systems, AI and Machine Learning, and always looking to collaborate 
-            on projects related to AI! 🚀
+            Currently working on Go, Cloud, CloudFoundry, and BOSH. I'm also diving deeper into
+            Operating Systems, Distributed Systems, and AI/ML. Always looking
+            to collaborate on interesting projects.
           </p>
         </div>
-        
-        <div class="about-skills">
-          <h3>Things I Love Working With</h3>
-          <div class="skills-grid">
-            <div class="skill-item animate-skill" style="animation-delay: 0s;">
-              <span class="skill-icon">🐹</span>
-              <span>Go</span>
+
+        <div class="about-interests animate-fade-in delay-3">
+          <div class="interest-card">
+            <div class="interest-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
             </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.1s;">
-              <span class="skill-icon">🐍</span>
-              <span>Python</span>
+            <div>
+              <h4>Backend Systems</h4>
+              <p>Building scalable, performant services with clean architecture</p>
             </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.2s;">
-              <span class="skill-icon">☁️</span>
-              <span>Cloud</span>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+              </svg>
             </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.3s;">
-              <span class="skill-icon">🐳</span>
-              <span>Docker</span>
+            <div>
+              <h4>Cloud & Infrastructure</h4>
+              <p>Designing reliable infrastructure on GCP, AWS, and Kubernetes</p>
             </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.4s;">
-              <span class="skill-icon">☸️</span>
-              <span>Kubernetes</span>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
             </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.5s;">
-              <span class="skill-icon">🗄️</span>
-              <span>PostgreSQL</span>
-            </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.6s;">
-              <span class="skill-icon">📨</span>
-              <span>Kafka</span>
-            </div>
-            <div class="skill-item animate-skill" style="animation-delay: 0.7s;">
-              <span class="skill-icon">🐧</span>
-              <span>Linux</span>
+            <div>
+              <h4>AI & Machine Learning</h4>
+              <p>Exploring intelligent systems and building AI-powered solutions</p>
             </div>
           </div>
         </div>
@@ -145,916 +170,462 @@ const featuredProjects = [
     </div>
   </section>
 
-  <!-- My Projects Section -->
-  <section class="section projects-preview">
+  <!-- Skills Section -->
+  <section class="section skills" id="skills">
     <div class="container">
-      <div class="section-header">
-        <h2>My Projects</h2>
-        <div class="squiggle"></div>
-      </div>
-      
-      <div class="projects-scroll-wrapper">
-        <button class="scroll-button scroll-button-left" aria-label="Scroll left">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m15 18-6-6 6-6"/>
-          </svg>
-        </button>
-        <button class="scroll-button scroll-button-right" aria-label="Scroll right">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-        </button>
-        <div class="projects-scroll-container">
-          <div class="projects-grid-scroll" id="projects-scroll">
-            {featuredProjects.map((project, i) => (
-              <div class="project-item" data-project-index={i}>
-                <Card 
-                  title={project.title}
-                  description={project.description}
-                  tags={project.tags}
-                  href={project.href}
-                  variant="project"
-                />
-              </div>
-            ))}
-            <div class="projects-duplicate" id="projects-duplicate">
-              {featuredProjects.map((project, i) => (
-                <div class="project-item" data-project-index={i}>
-                  <Card 
-                    title={project.title}
-                    description={project.description}
-                    tags={project.tags}
-                    href={project.href}
-                    variant="project"
-                  />
-                </div>
-              ))}
-            </div>
+      <div class="section-label animate-fade-in">Skills</div>
+      <h2 class="section-title animate-fade-in delay-1">Tech stack</h2>
+      <p class="section-subtitle animate-fade-in delay-2">Technologies I work with on a daily basis</p>
+
+      <div class="skills-grid animate-fade-in delay-3">
+        {skills.map(skill => (
+          <div class="skill-pill">
+            {skill.name}
           </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Blog Preview Section - Hidden for now
-  <section class="section blog-preview">
+  <!-- Projects Section -->
+  <section class="section projects" id="projects">
     <div class="container">
-      <div class="section-header">
-        <h2>Latest Posts</h2>
-        <div class="squiggle"></div>
-      </div>
-      
-      <div class="coming-soon-container animate-fade-in">
-        <div class="coming-soon-card">
-          <div class="cooking-animation">
-            <span class="cooking-emoji">👨‍🍳</span>
-            <div class="steam">
-              <span class="steam-particle">~</span>
-              <span class="steam-particle">~</span>
-              <span class="steam-particle">~</span>
-            </div>
-            <span class="pot-emoji">🍳</span>
-          </div>
-          <h3>Something's Cooking!</h3>
-          <p>Blog posts are on their way. Stay tuned for insights on backend engineering, distributed systems, and more!</p>
+      <div class="section-header-row">
+        <div>
+          <div class="section-label animate-fade-in">Projects</div>
+          <h2 class="section-title animate-fade-in delay-1">Featured work</h2>
         </div>
-      </div>
-      
-      <div class="section-cta">
-        <a href="/blog" class="btn btn-secondary">
-          Visit Blog →
+        <a href="/projects" class="view-all-link animate-fade-in delay-2">
+          View all projects
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/>
+            <path d="m12 5 7 7-7 7"/>
+          </svg>
         </a>
       </div>
+
+      <div class="projects-grid">
+        {featuredProjects.map((project, i) => (
+          <div class={`animate-fade-in delay-${(i % 4) + 2}`}>
+            <Card
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              href={project.href}
+              variant="project"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
-  -->
 
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card animate-fade-in">
+        <div class="cta-glow"></div>
+        <h2>Let's work together</h2>
+        <p>I'm always open to discussing new opportunities, interesting projects, or just having a good conversation about tech.</p>
+        <div class="cta-buttons">
+          <a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener" class="btn btn-primary">
+            Get in touch
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+          <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener" class="btn btn-outline">
+            View GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
   /* Hero Section */
   .hero {
     position: relative;
-    padding: var(--space-3xl) 0;
-    overflow: hidden;
-    min-height: 80vh;
+    padding: calc(var(--space-5xl) + 60px) 0 var(--space-5xl);
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
   }
-  
+
   .hero-bg {
     position: absolute;
     inset: 0;
     z-index: -1;
+    overflow: hidden;
   }
-  
-  .hero-blob-1 {
-    width: 400px;
-    height: 400px;
-    top: -100px;
+
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+  }
+
+  .hero-glow-1 {
+    width: 600px;
+    height: 600px;
+    top: -200px;
     left: -100px;
+    background: rgba(99, 102, 241, 0.08);
   }
-  
-  .hero-blob-2 {
-    width: 300px;
-    height: 300px;
-    bottom: -50px;
-    right: 10%;
+
+  .hero-glow-2 {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -100px;
+    background: rgba(139, 92, 246, 0.06);
   }
-  
-  .hero-blob-3 {
-    width: 200px;
-    height: 200px;
-    top: 30%;
-    right: -50px;
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 30%, transparent 70%);
   }
-  
+
   .hero-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3xl);
+    max-width: 720px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
     align-items: center;
-  }
-  
-  .hero-greeting {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: var(--color-accent);
-    margin-bottom: var(--space-sm);
-  }
-  
-  .hero-title {
-    margin-bottom: var(--space-lg);
-  }
-  
-  .hero-name {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--color-accent), #ff8e8e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-muted);
-    max-width: 500px;
+    gap: var(--space-xs);
+    padding: 0.375rem 1rem;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
     margin-bottom: var(--space-xl);
   }
-  
-  .highlight {
-    color: var(--color-text);
-    font-weight: 600;
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-green);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
   }
-  
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-lg);
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    margin-bottom: var(--space-2xl);
+    line-height: 1.7;
+  }
+
+  .hero-subtitle strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
   .hero-cta {
     display: flex;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .hero-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .stack-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  .stack-items {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     flex-wrap: wrap;
   }
-  
-  /* Hero Visual */
-  .hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .stack-item {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-display);
+    font-weight: 500;
   }
-  
-  .hero-avatar {
-    position: relative;
-    width: 280px;
-    height: 280px;
+
+  .stack-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--color-text-muted);
+    border-radius: 50%;
   }
-  
-  .avatar-shape {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-tertiary));
-    border: 4px solid var(--color-text);
-    border-radius: var(--radius-blob);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-cartoon-lg);
-    animation: float 4s ease-in-out infinite;
+
+  /* Section Styles */
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
   }
-  
-  .avatar-emoji {
-    font-size: 8rem;
+
+  .section-title {
+    margin-bottom: var(--space-md);
   }
-  
-  .avatar-orbit {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    animation: spin 20s linear infinite;
-  }
-  
-  .orbit-icon {
-    position: absolute;
-    font-size: 2rem;
-    animation: counter-spin 20s linear infinite;
-  }
-  
-  .orbit-icon:nth-child(1) {
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .orbit-icon:nth-child(2) {
-    bottom: 0;
-    left: -20px;
-  }
-  
-  .orbit-icon:nth-child(3) {
-    bottom: 0;
-    right: -20px;
-  }
-  
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  @keyframes counter-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(-360deg); }
-  }
-  
-  /* Section Header */
-  .section-header {
-    text-align: center;
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
     margin-bottom: var(--space-2xl);
+    max-width: 480px;
   }
-  
-  .squiggle {
-    width: 80px;
-    height: 8px;
-    margin: var(--space-md) auto 0;
-    background: var(--color-accent);
-    border-radius: 4px;
-    transform: rotate(-2deg);
-  }
-  
+
   /* About Section */
+  .about {
+    border-top: 1px solid var(--color-border);
+  }
+
   .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
     align-items: start;
   }
-  
+
   .about-text p {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.8;
-  }
-  
-  .about-skills h3 {
-    margin-bottom: var(--space-lg);
-  }
-  
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-  }
-  
-  .skill-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-bg-alt);
-    border: 2px solid var(--color-text);
-    border-radius: var(--radius-md);
-    font-family: var(--font-display);
-    font-weight: 600;
-    transition: all var(--transition-bounce);
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  
-  .animate-skill {
-    animation: skill-fade-in 0.6s ease-out forwards;
-  }
-  
-  @keyframes skill-fade-in {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .skill-item:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: var(--shadow-cartoon);
-    background: var(--color-secondary);
-  }
-  
-  .skill-icon {
-    font-size: 1.5rem;
-    transition: transform var(--transition-bounce);
-  }
-  
-  .skill-item:hover .skill-icon {
-    animation: skill-icon-bounce 0.6s ease-in-out;
-  }
-  
-  @keyframes skill-icon-bounce {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-5px) rotate(-10deg); }
-    75% { transform: translateY(-5px) rotate(10deg); }
-  }
-  
-  /* Projects Section */
-  .projects-preview {
-    overflow: visible;
-  }
-  
-  .projects-preview .container {
-    overflow: visible;
-  }
-  
-  /* Projects Scroll Wrapper */
-  .projects-scroll-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: calc(4 * 300px + 3 * var(--space-lg));
-    margin: 0 auto;
-    padding: 0 50px; /* Add padding for buttons */
-    overflow: visible;
+    color: var(--color-text-secondary);
   }
 
-  @media (max-width: 1024px) {
-    .projects-scroll-wrapper {
-      padding: 0; /* Remove padding when buttons are hidden */
-    }
+  .about-text p:last-child {
+    margin-bottom: 0;
   }
-  
-  /* Projects Scroll Container */
-  .projects-scroll-container {
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: var(--space-md) 0;
-    width: 100%;
-    /* Hide scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+
+  .about-interests {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
   }
-  
-  .projects-scroll-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+
+  .interest-card {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-normal);
   }
-  
-  /* Scroll Navigation Buttons */
-  .scroll-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    border: 3px solid var(--color-text);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: var(--color-text);
-    cursor: pointer;
+
+  .interest-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateX(4px);
+  }
+
+  .interest-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-bounce);
-    opacity: 0.7;
-    pointer-events: auto;
-  }
-  
-  .scroll-button:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: var(--shadow-cartoon);
-  }
-  
-  .scroll-button:active {
-    transform: translateY(-50%) scale(0.95);
-  }
-  
-  .scroll-button-left {
-    left: -40px;
-  }
-  
-  .scroll-button-right {
-    right: -40px;
-  }
-  
-  /* Responsive button positioning */
-  /* Hide buttons on tablet and mobile (touch devices) */
-  @media (max-width: 1024px) {
-    .scroll-button {
-      display: none;
-    }
-  }
-  
-  .scroll-button svg {
-    width: 28px;
-    height: 28px;
-  }
-  
-  /* Hide buttons when at edges */
-  .projects-scroll-wrapper.at-start .scroll-button-left {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  
-  .projects-scroll-wrapper.at-end .scroll-button-right {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  
-  .projects-grid-scroll {
-    display: flex;
-    gap: var(--space-lg);
-    width: max-content;
-  }
-  
-  /* .projects-scroll-container.manual-scrolling .projects-duplicate {
-    display: none;
-  } */
-  
-  .projects-duplicate {
-    display: flex;
-    gap: var(--space-lg);
-  }
-  
-  /* Prevent empty space when animation resumes */
-  .projects-scroll-container.manual-scrolling {
-    scroll-behavior: smooth;
-  }
-  
-  .project-item {
-    flex-shrink: 0;
-    width: 300px;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out, filter 0.3s ease-out;
-    position: relative;
-    will-change: transform;
-    opacity: 0.4;
-    filter: grayscale(0.6);
-  }
-  
-  .project-item.fully-visible {
-    opacity: 1;
-    filter: grayscale(0);
-  }
-  
-  .project-item.fully-visible:hover {
-    transform: scale(1.1);
-    z-index: 10;
-  }
-  
-  .projects-scroll-container.auto-scrolling {
-    scroll-behavior: auto;
-  }
-  
-  /* Coming Soon Card */
-  .coming-soon-container {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .coming-soon-card {
-    background: var(--color-bg-alt);
-    border: 3px solid var(--color-text);
-    border-radius: var(--radius-lg);
-    padding: var(--space-2xl);
-    text-align: center;
-    box-shadow: var(--shadow-cartoon);
-  }
-  
-  .cooking-animation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: var(--space-lg);
-  }
-  
-  .cooking-emoji {
-    font-size: 3rem;
-    animation: bounce 1s ease-in-out infinite;
-  }
-  
-  .steam {
-    display: flex;
-    gap: var(--space-sm);
-    margin: var(--space-xs) 0;
-  }
-  
-  .steam-particle {
-    font-size: 1.5rem;
-    color: var(--color-text-muted);
-    opacity: 0.6;
-    animation: steam 1.5s ease-in-out infinite;
-  }
-  
-  .steam-particle:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  
-  .steam-particle:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  
-  .pot-emoji {
-    font-size: 4rem;
-    animation: wiggle 2s ease-in-out infinite;
-  }
-  
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  @keyframes steam {
-    0%, 100% { 
-      transform: translateY(0) scale(1);
-      opacity: 0.6;
-    }
-    50% { 
-      transform: translateY(-8px) scale(1.2);
-      opacity: 0.3;
-    }
-  }
-  
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
-  }
-  
-  .coming-soon-card h3 {
-    margin-bottom: var(--space-sm);
     color: var(--color-accent);
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: var(--radius-md);
   }
-  
-  .coming-soon-card p {
+
+  .interest-card h4 {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .interest-card p {
+    font-size: 0.8rem;
     color: var(--color-text-muted);
     margin-bottom: 0;
+    line-height: 1.5;
   }
-  
-  
+
+  /* Skills Section */
+  .skills {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-pill {
+    padding: 0.5rem 1rem;
+    font-family: var(--font-display);
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+  }
+
+  .skill-pill:hover {
+    color: var(--color-text);
+    border-color: var(--color-accent);
+    background: rgba(99, 102, 241, 0.06);
+  }
+
+  /* Projects Section */
+  .projects {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .section-header-row .section-title {
+    margin-bottom: 0;
+  }
+
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-normal);
+  }
+
+  .view-all-link:hover {
+    color: var(--color-accent);
+  }
+
+  .view-all-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  .view-all-link svg {
+    transition: transform var(--transition-normal);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cta-card {
+    position: relative;
+    text-align: center;
+    padding: var(--space-4xl) var(--space-2xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-card h2 {
+    position: relative;
+    margin-bottom: var(--space-md);
+  }
+
+  .cta-card p {
+    position: relative;
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 480px;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
+      padding: calc(var(--space-3xl) + 60px) 0 var(--space-3xl);
       min-height: auto;
-      padding: var(--space-2xl) 0;
     }
-    
+
     .hero-container {
-      grid-template-columns: 1fr;
-      text-align: center;
+      text-align: left;
     }
-    
-    .hero-subtitle {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .hero-cta {
-      justify-content: center;
-    }
-    
-    .hero-visual {
-      order: -1;
-    }
-    
-    .hero-avatar {
-      width: 200px;
-      height: 200px;
-    }
-    
-    .avatar-emoji {
-      font-size: 5rem;
-    }
-    
+
     .about-content {
       grid-template-columns: 1fr;
     }
-    
-    .skills-grid {
-      grid-template-columns: repeat(2, 1fr);
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .cta-card {
+      padding: var(--space-2xl) var(--space-lg);
     }
   }
 </style>
-
-<script>
-  // Check if project cards are fully visible before allowing hover scale
-  function checkCardVisibility() {
-    const container = document.querySelector('.projects-scroll-container');
-    const cards = document.querySelectorAll('.project-item');
-    
-    if (!container || !cards.length) return;
-    
-    const containerRect = container.getBoundingClientRect();
-    const containerLeft = containerRect.left;
-    const containerRight = containerRect.right;
-    
-    cards.forEach(card => {
-      const cardRect = card.getBoundingClientRect();
-      const cardLeft = cardRect.left;
-      const cardRight = cardRect.right;
-      const cardWidth = cardRect.width;
-      
-      // Calculate how much of the card is visible
-      const visibleLeft = Math.max(cardLeft, containerLeft);
-      const visibleRight = Math.min(cardRight, containerRight);
-      const visibleWidth = Math.max(0, visibleRight - visibleLeft);
-      const visibleRatio = visibleWidth / cardWidth;
-      
-      // Card is considered fully visible if at least 80% is visible
-      // This is less strict than before to ensure all reasonably visible cards get the class
-      const minVisibleRatio = 0.8;
-      
-      // Check if card is within container bounds (not completely outside)
-      const isWithinBounds = cardRight > containerLeft && cardLeft < containerRight;
-      
-      const isFullyVisible = visibleRatio >= minVisibleRatio && isWithinBounds;
-      
-      if (isFullyVisible) {
-        card.classList.add('fully-visible');
-      } else {
-        card.classList.remove('fully-visible');
-      }
-    });
-  }
-  
-  // Handle manual scrolling and auto-resume
-  const wrapper = document.querySelector('.projects-scroll-wrapper');
-  const container = document.querySelector('.projects-scroll-container');
-  const scrollContent = document.querySelector('.projects-grid-scroll');
-  const duplicateSection = document.querySelector('.projects-duplicate');
-  const scrollButtonLeft = document.querySelector('.scroll-button-left');
-  const scrollButtonRight = document.querySelector('.scroll-button-right');
-  if (container && scrollContent && wrapper) {
-    const cards = document.querySelectorAll('.project-item');
-    let manualScrollTimeout: ReturnType<typeof setTimeout> | null = null;
-    let isManuallyScrolling = false;
-    let lastScrollLeft = container.scrollLeft;
-    let isUserScrolling = false;
-    let autoScrollAnimationFrame: number | null = null;
-    let autoScrollStartTime: number | null = null;
-    let autoScrollSpeed = 0.5; // pixels per frame (adjust for speed)
-    let isProgrammaticScroll = false;
-    let lastProgrammaticScroll = -1; // Track the last programmatic scroll position
-    
-    // Calculate the width of one set of projects (original + duplicate)
-    function getSingleSetWidth() {
-      if (!scrollContent) return 0;
-      return scrollContent.scrollWidth / 2;
-    }
-    
-    // Update button visibility based on scroll position
-    function updateButtonVisibility() {
-      if (!container || !wrapper) return;
-      const scrollLeft = container.scrollLeft;
-      const scrollWidth = container.scrollWidth;
-      const clientWidth = container.clientWidth;
-      const singleSetWidth = getSingleSetWidth();
-      
-      // For infinite scroll, we check if we're at the start or end of the visible set
-      const isAtStart = scrollLeft <= 1;
-      const isAtEnd = scrollLeft >= singleSetWidth - clientWidth - 1;
-      
-      if (isAtStart) {
-        wrapper.classList.add('at-start');
-        wrapper.classList.remove('at-end');
-      } else if (isAtEnd) {
-        wrapper.classList.add('at-end');
-        wrapper.classList.remove('at-start');
-      } else {
-        wrapper.classList.remove('at-start', 'at-end');
-      }
-    }
-    
-    // Scroll functions - simplified for reliability
-    function scrollLeftFn() {
-      if (!container) return;
-      const scrollAmount = 320; // Scroll by one card width + gap
-      
-      // Pause auto-scroll when using buttons
-      isManuallyScrolling = true;
-      isUserScrolling = true;
-      container.classList.add('manual-scrolling');
-      autoScrollStartTime = null;
-      
-      container.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
-      
-      if (manualScrollTimeout) {
-        clearTimeout(manualScrollTimeout);
-      }
-      
-      manualScrollTimeout = setTimeout(() => {
-        isManuallyScrolling = false;
-        isUserScrolling = false;
-        container.classList.remove('manual-scrolling');
-        autoScrollStartTime = null;
-      }, 3000);
-    }
-    
-    function scrollRightFn() {
-      if (!container) return;
-      const scrollAmount = 320; // Scroll by one card width + gap
-      
-      // Pause auto-scroll when using buttons
-      isManuallyScrolling = true;
-      isUserScrolling = true;
-      container.classList.add('manual-scrolling');
-      autoScrollStartTime = null;
-      
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-      
-      if (manualScrollTimeout) {
-        clearTimeout(manualScrollTimeout);
-      }
-      
-      manualScrollTimeout = setTimeout(() => {
-        isManuallyScrolling = false;
-        isUserScrolling = false;
-        container.classList.remove('manual-scrolling');
-        autoScrollStartTime = null;
-      }, 3000);
-    }
-    
-    // Add button click handlers
-    if (scrollButtonLeft) {
-      scrollButtonLeft.addEventListener('click', scrollLeftFn);
-    }
-    if (scrollButtonRight) {
-      scrollButtonRight.addEventListener('click', scrollRightFn);
-    }
-    
-    // Auto-scroll function using requestAnimationFrame
-    function autoScroll(timestamp: number) {
-      if (!container || !scrollContent) return;
-      
-      if (isManuallyScrolling || isUserScrolling) {
-        autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
-        return;
-      }
-      
-      if (!autoScrollStartTime) {
-        autoScrollStartTime = timestamp;
-      }
-      
-      const singleSetWidth = getSingleSetWidth();
-      if (singleSetWidth === 0) {
-        autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
-        return;
-      }
-      
-      // Calculate target scroll position (looping)
-      const maxScroll = singleSetWidth;
-      let targetScroll = container.scrollLeft + autoScrollSpeed;
-      
-      // Loop back to start when reaching the end (with small buffer to avoid flicker)
-      if (targetScroll >= maxScroll - 1) {
-        targetScroll = 0;
-      }
-      
-      // Update scroll position programmatically
-      isProgrammaticScroll = true;
-      lastProgrammaticScroll = targetScroll;
-      container.scrollLeft = targetScroll;
-      // Clear flag after scroll event has time to fire
-      setTimeout(() => {
-        isProgrammaticScroll = false;
-      }, 10);
-      
-      autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
-    }
-    
-    // Detect manual scrolling - Simplified to avoid fighting with auto-scroll
-    // We only use the scroll event to keep the resume timer alive if the user is ALREADY manually scrolling
-    container.addEventListener('scroll', () => {
-      const currentScrollLeft = container.scrollLeft;
-      
-      // Update button visibility
-      updateButtonVisibility();
-      
-      // If we are already in manual scrolling mode (triggered by wheel/touch/hover),
-      // we want to keep resetting the resume timer as long as scrolling is happening.
-      if (isManuallyScrolling && manualScrollTimeout) {
-        clearTimeout(manualScrollTimeout);
-        
-        // Schedule resume
-        manualScrollTimeout = setTimeout(() => {
-          isManuallyScrolling = false;
-          container.classList.remove('manual-scrolling');
-          autoScrollStartTime = null;
-        }, 2000);
-      }
-      
-      lastScrollLeft = currentScrollLeft;
-    }, { passive: true });
-    
-    // Use explicit events to trigger manual scrolling mode
-    container.addEventListener('wheel', (e: Event) => {
-      const wheelEvent = e as WheelEvent;
-      // Only handle horizontal scrolling
-      if (Math.abs(wheelEvent.deltaX) > Math.abs(wheelEvent.deltaY)) {
-        // Enter manual mode immediately
-        isManuallyScrolling = true;
-        container.classList.add('manual-scrolling');
-        autoScrollStartTime = null;
-        
-        if (manualScrollTimeout) {
-          clearTimeout(manualScrollTimeout);
-        }
-        
-        manualScrollTimeout = setTimeout(() => {
-          isManuallyScrolling = false;
-          container.classList.remove('manual-scrolling');
-          autoScrollStartTime = null;
-        }, 2000);
-      }
-    }, { passive: true });
-    
-    // Pause on hover
-    container.addEventListener('mouseenter', () => {
-      if (!isManuallyScrolling) {
-        isManuallyScrolling = true;
-        container.classList.add('manual-scrolling');
-      }
-    });
-    
-    container.addEventListener('mouseleave', () => {
-      if (!isUserScrolling) {
-        isManuallyScrolling = false;
-        container.classList.remove('manual-scrolling');
-        autoScrollStartTime = null;
-      }
-    });
-
-    // Touch support for mobile devices
-    container.addEventListener('touchstart', () => {
-      isManuallyScrolling = true;
-      isUserScrolling = true;
-      container.classList.add('manual-scrolling');
-      autoScrollStartTime = null;
-      
-      if (manualScrollTimeout) {
-        clearTimeout(manualScrollTimeout);
-      }
-    }, { passive: true });
-
-    container.addEventListener('touchend', () => {
-      if (manualScrollTimeout) {
-        clearTimeout(manualScrollTimeout);
-      }
-      
-      manualScrollTimeout = setTimeout(() => {
-        isManuallyScrolling = false;
-        isUserScrolling = false;
-        container.classList.remove('manual-scrolling');
-        autoScrollStartTime = null;
-      }, 3000);
-    }, { passive: true });
-    
-    // Start auto-scroll
-    autoScrollAnimationFrame = requestAnimationFrame(autoScroll);
-    
-    // Use Intersection Observer for better performance
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          checkCardVisibility();
-        }
-      });
-    }, {
-      root: container,
-      threshold: [0, 0.5, 1.0]
-    });
-    
-    cards.forEach(card => {
-      observer.observe(card);
-    });
-    
-    container.addEventListener('mouseenter', checkCardVisibility);
-    container.addEventListener('mousemove', checkCardVisibility);
-    window.addEventListener('resize', checkCardVisibility);
-    
-    // Initial check
-    checkCardVisibility();
-    updateButtonVisibility();
-    
-    // Check periodically during animation (less frequently)
-    setInterval(checkCardVisibility, 200);
-    setInterval(updateButtonVisibility, 100);
-  }
-</script>
