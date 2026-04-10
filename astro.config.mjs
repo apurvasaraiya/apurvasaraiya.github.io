@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yourusername.github.io',
+  site: 'https://apurvasaraiya.github.io',
   base: process.env.BASE_PATH || '/',
   output: 'static',
   build: {
