@@ -1,20 +1,23 @@
-/* ===== Design system: engineering paper =====
-   Cool paper, ink, one teal accent. Bricolage Grotesque for display,
-   Schibsted Grotesk for body, IBM Plex Mono for metadata/labels. */
+/* ===== Design system: engineering paper, dark =====
+   Near-black surface, paper-light ink, one teal accent. Bricolage Grotesque
+   for display, Schibsted Grotesk for body, IBM Plex Mono for metadata/labels.
+   Dark is the default and only theme. */
 
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
 :root {
-  --paper: #f4f4f0;
-  --paper-raise: #fbfbf8;
-  --ink: #1a1d1c;
-  --ink-soft: #565f5c;
-  --ink-faint: #8a928e;
-  --hairline: #dcded4;
-  --hairline-strong: #b9beb2;
-  --accent: #0b7285;
-  --accent-deep: #095c6b;
-  --accent-wash: rgba(11, 114, 133, 0.07);
+  color-scheme: dark;
+
+  --paper: #131615;
+  --paper-raise: #1c201f;
+  --ink: #e9ebe6;
+  --ink-soft: #a6afaa;
+  --ink-faint: #6e7773;
+  --hairline: #272c2a;
+  --hairline-strong: #414946;
+  --accent: #3ab7cc;
+  --accent-deep: #8fdbe8;
+  --accent-wash: rgba(58, 183, 204, 0.09);
 
   --font-display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
   --font-body: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
