@@ -53,10 +53,43 @@
 
   .place {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     color: #a6afaa;
+    margin-top: 6px;
   }
+
+  .rails {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .rail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    color: #a6afaa;
+  }
+
+  .node {
+    padding: 8px 14px;
+    border: 1.5px solid #414946;
+    border-radius: 9px;
+    background: #1c201f;
+    white-space: nowrap;
+  }
+
+  .node-mine {
+    color: #8fdbe8;
+    border-color: #3ab7cc;
+    background: rgba(58, 183, 204, 0.09);
+    font-weight: 600;
+  }
+
+  .arrow { color: #414946; font-size: 20px; }
 </style>
 </head>
 <body>
@@ -66,8 +99,26 @@
     <h1>I write software. Backend, systems, <em>and the bits in between.</em></h1>
   </div>
   <div class="bottom">
-    <span class="name">apurva saraiya</span>
-    <span class="place">Bengaluru, India</span>
+    <div>
+      <div class="name">apurva saraiya</div>
+      <div class="place">Bengaluru, India</div>
+    </div>
+    <div class="rails">
+      <span class="rail">
+        <span class="node">your code</span>
+        <span class="arrow">&rarr;</span>
+        <span class="node node-mine">the platform</span>
+        <span class="arrow">&rarr;</span>
+        <span class="node">production</span>
+      </span>
+      <span class="rail">
+        <span class="node">an ai agent</span>
+        <span class="arrow">&rarr;</span>
+        <span class="node node-mine">a sandbox</span>
+        <span class="arrow">&rarr;</span>
+        <span class="node">your codebase</span>
+      </span>
+    </div>
   </div>
 </body>
 </html>

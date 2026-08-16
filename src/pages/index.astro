@@ -57,7 +57,31 @@ const toolbox = [
         GitHub is the honest record.
       </p>
 
-      <div class="hero-actions reveal reveal-4">
+      <div class="pipelines reveal reveal-4" role="img"
+        aria-label="Two pipelines: your code through the platform to production — day job. An AI agent through a sandbox to a codebase — after hours.">
+        <div class="rail">
+          <span class="node">your code</span>
+          <span class="flow" aria-hidden="true"></span>
+          <span class="node-wrap">
+            <span class="node node-mine">the platform</span>
+            <span class="node-note">&boxur;&nbsp;day job</span>
+          </span>
+          <span class="flow" aria-hidden="true"></span>
+          <span class="node">production</span>
+        </div>
+        <div class="rail">
+          <span class="node">an ai agent</span>
+          <span class="flow" aria-hidden="true"></span>
+          <span class="node-wrap">
+            <span class="node node-mine">a sandbox</span>
+            <span class="node-note">&boxur;&nbsp;after hours</span>
+          </span>
+          <span class="flow" aria-hidden="true"></span>
+          <span class="node">your codebase</span>
+        </div>
+      </div>
+
+      <div class="hero-actions reveal reveal-5">
         <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
           GitHub <span aria-hidden="true">&nearr;</span>
         </a>
@@ -179,6 +203,75 @@ const toolbox = [
     color: var(--ink-soft);
     max-width: 38rem;
     margin-bottom: var(--space-4);
+  }
+
+  .pipelines {
+    display: grid;
+    grid-template-columns: max-content minmax(1rem, 3.5rem) max-content minmax(1rem, 3.5rem) max-content;
+    column-gap: 0.5rem;
+    row-gap: var(--space-2);
+    justify-content: start;
+    align-items: start;
+    padding: var(--space-3) 0;
+    margin-bottom: var(--space-4);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .rail {
+    display: contents;
+  }
+
+  .node {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    white-space: nowrap;
+    text-align: center;
+    color: var(--ink-soft);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--paper-raise);
+  }
+
+  .node-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .node-mine {
+    color: var(--accent-deep);
+    border-color: var(--accent);
+    background: var(--accent-wash);
+    font-weight: 600;
+  }
+
+  .node-note {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    padding-left: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .flow {
+    height: 1px;
+    align-self: start;
+    margin-top: 1.05rem;
+    background: var(--hairline-strong);
+    position: relative;
+  }
+
+  .flow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    border-left: 5px solid var(--hairline-strong);
+    border-top: 3.5px solid transparent;
+    border-bottom: 3.5px solid transparent;
   }
 
   .hero-actions {
@@ -357,6 +450,15 @@ const toolbox = [
   @media (max-width: 480px) {
     .hero {
       padding-top: var(--space-4);
+    }
+
+    .node {
+      font-size: 0.68rem;
+      padding: 0.3rem 0.5rem;
+    }
+
+    .flow {
+      margin-top: 0.95rem;
     }
 
     .log-row,
