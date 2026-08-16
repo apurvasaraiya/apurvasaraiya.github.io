@@ -1,35 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const now = [
-  {
-    label: 'building',
-    text: 'A personal project that isn\'t public yet.',
-  },
-  {
-    label: 'studying',
-    text: 'Operating-systems and distributed-systems internals — the fundamentals keep paying rent.',
-  },
-];
-
 const work = [
   {
-    name: 'go-grep',
-    href: 'https://github.com/apurvasaraiya/go-grep',
+    n: '01',
+    name: 'CopyIT',
+    href: 'https://github.com/apurvasaraiya/CopyIT',
+    meta: 'Python · Linux',
+    lede: 'Clipboard history for Linux.',
+    text: 'A small Python utility that talks to the real clipboard and remembers what you copied. Grab an hour-old clip without digging through windows.',
+  },
+  {
+    n: '02',
+    name: 'shortly',
+    href: 'https://github.com/apurvasaraiya/shortly',
     meta: 'Go',
-    text: 'grep rebuilt from scratch — regex matching, recursive file walking, honest CLI ergonomics.',
-  },
-  {
-    name: 'dotfiles',
-    href: 'https://github.com/apurvasaraiya/dotfiles',
-    meta: 'Linux',
-    text: 'One repo from bare Arch to a full working machine — Hyprland, shell, editor, the lot.',
-  },
-  {
-    name: 'apurvasaraiya.github.io',
-    href: 'https://github.com/apurvasaraiya/apurvasaraiya.github.io',
-    meta: 'Astro',
-    text: 'This site — a hand-rolled design system, no CSS frameworks, static and fast.',
+    lede: 'A URL shortener, layered like a real service.',
+    text: 'HTTP in Go with controller, service, and repository layers — plus unit tests, mocks, and a Docker build. Short links, honest internals.',
   },
 ];
 
@@ -42,7 +29,6 @@ const toolbox = [
 ---
 
 <Base title="Apurva Saraiya — Software Engineer · Go, Backend, Distributed Systems">
-  <!-- Hero -->
   <section class="hero">
     <div class="container">
       <p class="eyebrow reveal reveal-1">backend &middot; distributed systems &middot; go</p>
@@ -53,12 +39,11 @@ const toolbox = [
 
       <p class="hero-lede reveal reveal-3">
         By day I work on Cloud Foundry and BOSH — distributed systems in Go.
-        After hours I'm usually in a personal project; it isn't public yet, so
-        GitHub is the honest record.
+        Nights, I grind on something of my own.
       </p>
 
       <div class="pipelines reveal reveal-4" role="img"
-        aria-label="Two pipelines: your code through the platform to production — day job. An AI agent through a sandbox to a codebase — after hours.">
+        aria-label="Two pipelines: your code through the platform to production — day job. An idea through grinding toward something I'll share soon — nights.">
         <div class="rail">
           <span class="node">your code</span>
           <span class="flow" aria-hidden="true"></span>
@@ -70,14 +55,14 @@ const toolbox = [
           <span class="node">production</span>
         </div>
         <div class="rail">
-          <span class="node">an ai agent</span>
+          <span class="node">an idea</span>
           <span class="flow" aria-hidden="true"></span>
           <span class="node-wrap">
-            <span class="node node-mine">a sandbox</span>
-            <span class="node-note">&boxur;&nbsp;after hours</span>
+            <span class="node node-mine">grinding</span>
+            <span class="node-note">&boxur;&nbsp;nights</span>
           </span>
           <span class="flow" aria-hidden="true"></span>
-          <span class="node">your codebase</span>
+          <span class="node">soon</span>
         </div>
       </div>
 
@@ -96,22 +81,23 @@ const toolbox = [
     </div>
   </section>
 
-  <!-- Now -->
   <section class="block" id="now">
     <div class="container">
       <p class="eyebrow">now <span class="eyebrow-note">august 2026</span></p>
-      <ul class="log">
-        {now.map((entry) => (
-          <li class="log-row">
-            <span class="log-label">{entry.label}</span>
-            <p class="log-text">{entry.text}</p>
-          </li>
-        ))}
-      </ul>
+      <div class="now-panel">
+        <p class="now-kicker">
+          <span class="status-dot" aria-hidden="true"></span>
+          building
+        </p>
+        <h2 class="now-title">Something of my own. Sharing soon.</h2>
+        <p class="now-lede">
+          A personal project, still private. When it's ready to look at,
+          it'll live next to the work below.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Selected work -->
   <section class="block" id="work">
     <div class="container">
       <p class="eyebrow">selected work</p>
@@ -119,25 +105,22 @@ const toolbox = [
         {work.map((project) => (
           <li>
             <a class="work-row" href={project.href} target="_blank" rel="noopener noreferrer">
-              <span class="work-head">
-                <span class="work-name">{project.name}</span>
-                <span class="work-meta">{project.meta}</span>
+              <span class="work-n" aria-hidden="true">{project.n}</span>
+              <span class="work-body">
+                <span class="work-head">
+                  <span class="work-name">{project.name}</span>
+                  <span class="work-meta">{project.meta}</span>
+                </span>
+                <span class="work-lede">{project.lede}</span>
+                <span class="work-text">{project.text}</span>
               </span>
-              <span class="work-text">{project.text}</span>
             </a>
           </li>
         ))}
       </ul>
-      <p class="archive-note">
-        from the archive —
-        <a href="https://github.com/apurvasaraiya/shortly" target="_blank" rel="noopener noreferrer">shortly</a>, a Go URL shortener &middot;
-        <a href="https://github.com/apurvasaraiya/CopyIT" target="_blank" rel="noopener noreferrer">CopyIT</a>, a Python clipboard manager.
-        Retired, kept as history.
-      </p>
     </div>
   </section>
 
-  <!-- Toolbox -->
   <section class="block">
     <div class="container">
       <p class="eyebrow">toolbox</p>
@@ -152,14 +135,13 @@ const toolbox = [
     </div>
   </section>
 
-  <!-- Contact -->
   <section class="block" id="contact">
     <div class="container">
       <p class="eyebrow">contact</p>
-      <h2 class="contact-title">The commit history says it best.</h2>
+      <h2 class="contact-title">The work that's out is on GitHub.</h2>
       <p class="contact-lede">
-        The fastest way to see how I work is my GitHub. For roles — backend, AI,
-        or something that doesn't fit a neat label — LinkedIn DMs are open.
+        Start with CopyIT and shortly. For roles — backend, AI, or something
+        that doesn't fit a neat label — LinkedIn DMs are open.
       </p>
       <div class="contact-actions">
         <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
@@ -177,7 +159,6 @@ const toolbox = [
 </Base>
 
 <style>
-  /* Hero */
   .hero {
     padding: var(--space-5) 0 var(--space-6);
   }
@@ -201,7 +182,7 @@ const toolbox = [
   .hero-lede {
     font-size: 1.0625rem;
     color: var(--ink-soft);
-    max-width: 38rem;
+    max-width: 36rem;
     margin-bottom: var(--space-4);
   }
 
@@ -300,53 +281,82 @@ const toolbox = [
     background: var(--accent);
   }
 
-  /* Section rhythm */
+  @media (prefers-reduced-motion: no-preference) {
+    .status-dot {
+      animation: pulse 2.4s var(--ease-out) infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
   .block {
     padding-bottom: var(--space-6);
+    scroll-margin-top: 4.5rem;
   }
 
   .block .eyebrow {
     margin-bottom: var(--space-3);
   }
 
-  /* Now log */
-  .log {
-    list-style: none;
+  .now-panel {
+    padding: var(--space-4);
+    background: var(--paper-raise);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    border-left: 2px solid var(--accent);
+  }
+
+  .now-kicker {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .log-row {
-    display: grid;
-    grid-template-columns: 7rem 1fr;
-    gap: var(--space-2);
-    align-items: baseline;
-  }
-
-  .log-label {
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--accent);
+    margin-bottom: var(--space-2);
   }
 
-  .log-text {
+  .now-title {
+    font-size: clamp(1.75rem, 5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    max-width: 14ch;
+    margin-bottom: var(--space-2);
+  }
+
+  .now-lede {
     color: var(--ink-soft);
+    max-width: 32rem;
     margin-bottom: 0;
   }
 
-  /* Work list */
   .work-list {
     list-style: none;
     border-top: 1px solid var(--hairline);
   }
 
   .work-row {
-    display: block;
-    padding: var(--space-3) 0;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-2);
+    padding: var(--space-4) 0;
     border-bottom: 1px solid var(--hairline);
     color: inherit;
+    align-items: start;
+  }
+
+  .work-n {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    padding-top: 0.55rem;
   }
 
   .work-head {
@@ -354,24 +364,27 @@ const toolbox = [
     justify-content: space-between;
     align-items: baseline;
     gap: var(--space-2);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
   }
 
   .work-name {
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
     color: var(--ink);
     transition: color 150ms ease;
   }
 
   .work-name::after {
     content: ' \2197';
-    font-size: 0.75em;
+    font-size: 0.55em;
+    font-weight: 600;
     color: var(--ink-faint);
   }
 
-  .work-row:hover .work-name {
+  .work-row:hover .work-name,
+  .work-row:hover .work-n {
     color: var(--accent);
   }
 
@@ -384,20 +397,19 @@ const toolbox = [
     white-space: nowrap;
   }
 
+  .work-lede {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
   .work-text {
     display: block;
     color: var(--ink-soft);
     max-width: 36rem;
   }
 
-  .archive-note {
-    margin-top: var(--space-3);
-    font-size: 0.875rem;
-    color: var(--ink-faint);
-    max-width: 36rem;
-  }
-
-  /* Toolbox */
   .toolbox {
     display: flex;
     flex-direction: column;
@@ -428,7 +440,6 @@ const toolbox = [
     color: var(--ink-soft);
   }
 
-  /* Contact */
   .contact-title {
     font-size: clamp(1.75rem, 4.5vw, 2.5rem);
     margin-bottom: var(--space-2);
@@ -446,7 +457,6 @@ const toolbox = [
     gap: var(--space-2);
   }
 
-  /* Mobile */
   @media (max-width: 480px) {
     .hero {
       padding-top: var(--space-4);
@@ -461,7 +471,15 @@ const toolbox = [
       margin-top: 0.95rem;
     }
 
-    .log-row,
+    .now-panel {
+      padding: var(--space-3);
+    }
+
+    .work-row {
+      grid-template-columns: 1.75rem 1fr;
+      padding: var(--space-3) 0;
+    }
+
     .toolbox-row {
       grid-template-columns: 5.5rem 1fr;
     }
