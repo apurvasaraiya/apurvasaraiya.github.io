@@ -10,49 +10,72 @@ interface Props {
 
 const {
   title,
-  description = 'Apurva Saraiya - Software Engineer building robust backend systems, cloud infrastructure, and distributed systems.'
+  description = 'Apurva Saraiya — platform engineer working on Cloud Foundry & BOSH. Distributed systems in Go (Golang), Kubernetes, and infrastructure for AI coding agents: orchestration, sandboxes, local-first tooling.',
 } = Astro.props;
+
+const site = 'https://apurvasaraiya.github.io';
+const ogImage = `${site}/og.png`;
+
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Apurva Saraiya',
+  url: site,
+  jobTitle: 'Platform Engineer',
+  knowsAbout: [
+    'Go',
+    'Distributed Systems',
+    'Cloud Foundry',
+    'BOSH',
+    'Kubernetes',
+    'AI Agent Infrastructure',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Surat',
+    addressCountry: 'IN',
+  },
+  sameAs: [
+    'https://github.com/apurvasaraiya',
+    'https://www.linkedin.com/in/apurva-saraiya/',
+    'https://x.com/a____a07',
+  ],
+});
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#f4f4f0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={site + Astro.url.pathname} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={site + Astro.url.pathname} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@a____a07" />
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- Preload fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <script type="application/ld+json" set:html={personSchema} />
   </head>
   <body>
-    <div class="noise-overlay"></div>
-    <div class="page-wrapper">
-      <Nav />
-      <main>
-        <slot />
-      </main>
-      <Footer />
-    </div>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
-
-<style is:global>
-  .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  main {
-    flex: 1;
-  }
-</style>

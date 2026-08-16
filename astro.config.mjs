@@ -6,6 +6,10 @@ export default defineConfig({
   site: 'https://apurvasaraiya.github.io',
   base: process.env.BASE_PATH || '/',
   output: 'static',
+  redirects: {
+    '/projects': '/#work',
+    '/blog': '/',
+  },
   build: {
     assets: 'assets'
   }
