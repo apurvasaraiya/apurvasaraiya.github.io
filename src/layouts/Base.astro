@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'Apurva Saraiya — platform engineer working on Cloud Foundry & BOSH. Distributed systems in Go (Golang), Kubernetes, and infrastructure for AI coding agents: orchestration, sandboxes, local-first tooling.',
+  description = 'Apurva Saraiya — software engineer working on Cloud Foundry and BOSH. Distributed systems in Go. Open to backend, AI, and roles that don\'t fit a neat label.',
 } = Astro.props;
 
 const site = 'https://apurvasaraiya.github.io';
@@ -21,18 +21,18 @@ const personSchema = JSON.stringify({
   '@type': 'Person',
   name: 'Apurva Saraiya',
   url: site,
-  jobTitle: 'Platform Engineer',
+  jobTitle: 'Software Engineer',
   knowsAbout: [
     'Go',
+    'Backend',
     'Distributed Systems',
     'Cloud Foundry',
     'BOSH',
     'Kubernetes',
-    'AI Agent Infrastructure',
   ],
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Surat',
+    addressLocality: 'Bengaluru',
     addressCountry: 'IN',
   },
   sameAs: [

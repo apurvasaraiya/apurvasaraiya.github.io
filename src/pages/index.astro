@@ -4,11 +4,7 @@ import Base from '../layouts/Base.astro';
 const now = [
   {
     label: 'building',
-    text: 'Desk — a local command center that runs multiple CLI coding agents (Claude Code, Cursor, Codex) across repos, with no API keys. Open-sourcing soon.',
-  },
-  {
-    label: 'exploring',
-    text: 'QEMU/KVM sandboxes for running untrusted agent workloads in genuine isolation.',
+    text: 'A personal project that isn\'t public yet.',
   },
   {
     label: 'studying',
@@ -39,55 +35,29 @@ const work = [
 
 const toolbox = [
   { label: 'languages', items: 'Go (Golang) · Python · Bash' },
-  { label: 'platforms', items: 'Cloud Foundry · BOSH · Kubernetes · Docker' },
+  { label: 'infra', items: 'Cloud Foundry · BOSH · Kubernetes · Docker' },
   { label: 'data', items: 'PostgreSQL · Redis · Kafka · RabbitMQ' },
   { label: 'cloud & ci', items: 'GCP · AWS · Concourse · Jenkins' },
 ];
 ---
 
-<Base title="Apurva Saraiya — Platform Engineer · Go, Cloud Foundry, AI Agent Infrastructure">
+<Base title="Apurva Saraiya — Software Engineer · Go, Backend, Distributed Systems">
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <p class="eyebrow reveal reveal-1">platform engineering &middot; distributed systems &middot; go</p>
+      <p class="eyebrow reveal reveal-1">backend &middot; distributed systems &middot; go</p>
 
       <h1 class="hero-title reveal reveal-2">
-        I build platforms that run <em>other people's code.</em>
+        I write software. Backend, systems, <em>and the bits in between.</em>
       </h1>
 
       <p class="hero-lede reveal reveal-3">
-        By day, Cloud Foundry &amp; BOSH platform R&amp;D — distributed systems in Go, the
-        machinery enterprises trust with production. After hours, infrastructure for AI
-        coding agents: orchestration, sandboxes, local-first tooling. The problems are
-        the same — scheduling, isolation, safe rollouts. The workloads just got stranger.
+        By day I work on Cloud Foundry and BOSH — distributed systems in Go.
+        After hours I'm usually in a personal project; it isn't public yet, so
+        GitHub is the honest record.
       </p>
 
-      <!-- Signature: the two pipelines, annotated -->
-      <div class="pipelines reveal reveal-4" role="img"
-        aria-label="Two pipelines: your code flows through the platform to production — my day job. An AI agent flows through a sandbox to your codebase — my after-hours work.">
-        <div class="rail">
-          <span class="node">your code</span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node-wrap">
-            <span class="node node-mine">the platform</span>
-            <span class="node-note">&boxur;&nbsp;day job</span>
-          </span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node">production</span>
-        </div>
-        <div class="rail">
-          <span class="node">an ai agent</span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node-wrap">
-            <span class="node node-mine">a sandbox</span>
-            <span class="node-note">&boxur;&nbsp;after hours</span>
-          </span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node">your codebase</span>
-        </div>
-      </div>
-
-      <div class="hero-actions reveal reveal-5">
+      <div class="hero-actions reveal reveal-4">
         <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
           GitHub <span aria-hidden="true">&nearr;</span>
         </a>
@@ -96,7 +66,7 @@ const toolbox = [
         </a>
         <p class="hero-status">
           <span class="status-dot" aria-hidden="true"></span>
-          open to platform &amp; AI-infrastructure conversations &middot; Surat, India (IST)
+          open to backend, AI, and most software roles &middot; Bengaluru, India (IST)
         </p>
       </div>
     </div>
@@ -164,8 +134,8 @@ const toolbox = [
       <p class="eyebrow">contact</p>
       <h2 class="contact-title">The commit history says it best.</h2>
       <p class="contact-lede">
-        The fastest way to see how I work is my GitHub. For everything else — roles,
-        collaborations, or a good systems argument — my LinkedIn DMs are open.
+        The fastest way to see how I work is my GitHub. For roles — backend, AI,
+        or something that doesn't fit a neat label — LinkedIn DMs are open.
       </p>
       <div class="contact-actions">
         <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
@@ -209,77 +179,6 @@ const toolbox = [
     color: var(--ink-soft);
     max-width: 38rem;
     margin-bottom: var(--space-4);
-  }
-
-  /* Pipelines diagram */
-  .pipelines {
-    display: grid;
-    grid-template-columns: max-content minmax(1rem, 3.5rem) max-content minmax(1rem, 3.5rem) max-content;
-    column-gap: 0.5rem;
-    row-gap: var(--space-2);
-    justify-content: start;
-    align-items: start;
-    padding: var(--space-3) 0;
-    margin-bottom: var(--space-4);
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  /* Rails dissolve into the shared grid so columns align across both rows */
-  .rail {
-    display: contents;
-  }
-
-  .node {
-    display: inline-block;
-    padding: 0.35rem 0.7rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    white-space: nowrap;
-    text-align: center;
-    color: var(--ink-soft);
-    border: 1px solid var(--hairline-strong);
-    border-radius: var(--radius);
-    background: var(--paper-raise);
-  }
-
-  .node-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .node-mine {
-    color: var(--accent-deep);
-    border-color: var(--accent);
-    background: var(--accent-wash);
-    font-weight: 600;
-  }
-
-  .node-note {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    padding-left: 0.35rem;
-    white-space: nowrap;
-  }
-
-  .flow {
-    height: 1px;
-    align-self: start;
-    margin-top: 1.05rem;
-    background: var(--hairline-strong);
-    position: relative;
-  }
-
-  .flow::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: -3px;
-    border-left: 5px solid var(--hairline-strong);
-    border-top: 3.5px solid transparent;
-    border-bottom: 3.5px solid transparent;
   }
 
   .hero-actions {
@@ -458,19 +357,6 @@ const toolbox = [
   @media (max-width: 480px) {
     .hero {
       padding-top: var(--space-4);
-    }
-
-    .rail {
-      gap: 0.4rem;
-    }
-
-    .node {
-      font-size: 0.68rem;
-      padding: 0.3rem 0.5rem;
-    }
-
-    .flow {
-      margin-top: 0.95rem;
     }
 
     .log-row,
