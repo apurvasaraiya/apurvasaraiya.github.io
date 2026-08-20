@@ -1,28 +1,25 @@
 ---
-const links = [
-  { href: '/#now', label: 'now' },
-  { href: '/#work', label: 'work' },
-  { href: '/#contact', label: 'contact' },
+const social = [
+  { href: 'https://github.com/apurvasaraiya', label: 'github' },
+  { href: 'https://www.linkedin.com/in/apurva-saraiya/', label: 'linkedin' },
+  { href: 'https://x.com/a____a07', label: 'x' },
 ];
 ---
 
 <header class="site-header">
   <div class="container header-row">
     <a href="/" class="wordmark">apurva saraiya</a>
-    <nav aria-label="Main">
-      <ul class="nav-links">
-        {links.map((link) => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-        <li>
-          <a
-            href="https://github.com/apurvasaraiya"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nav-ext"
-          >github<span aria-hidden="true">&nearr;</span></a>
-        </li>
-      </ul>
+    <nav class="nav-ctas" aria-label="Social">
+      {social.map((link, i) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={['btn', i === 0 ? 'btn-solid' : 'btn-ghost']}
+        >
+          {link.label}<span aria-hidden="true">&nearr;</span>
+        </a>
+      ))}
     </nav>
   </div>
 </header>
@@ -40,7 +37,7 @@ const links = [
 
   .header-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: var(--space-2);
   }
@@ -58,31 +55,38 @@ const links = [
     color: var(--accent);
   }
 
-  .nav-links {
+  .nav-ctas {
     display: flex;
-    align-items: baseline;
-    gap: var(--space-2);
-    list-style: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.45rem;
   }
 
-  .nav-links a {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--ink-soft);
+  .nav-ctas .btn {
+    padding: 0.38rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    gap: 0.3rem;
   }
 
-  .nav-links a:hover {
-    color: var(--accent);
-  }
-
-  .nav-ext span {
+  .nav-ctas .btn span {
     font-size: 0.7em;
-    margin-left: 0.15em;
+  }
+
+  .nav-ctas .btn-solid { color: var(--paper); }
+  .nav-ctas .btn-ghost { color: var(--ink); }
+
+  .nav-ctas .btn-solid:hover,
+  .nav-ctas .btn-ghost:hover {
+    color: var(--paper);
   }
 
   @media (max-width: 420px) {
-    .nav-links {
-      gap: 0.75rem;
+    .nav-ctas { gap: 0.35rem; }
+    .nav-ctas .btn {
+      padding: 0.32rem 0.55rem;
+      font-size: 0.7rem;
     }
   }
 </style>

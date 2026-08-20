@@ -29,6 +29,70 @@ const toolbox = [
   { label: 'harness', items: 'T3 Code · Cursor · Claude Code · Codex · Gemini · Grok · Pi' },
   { label: 'dev', items: 'bun · Neovim' },
 ];
+
+const ASCII = String.raw`
+                .--++++--.
+            .+#####****#####+.
+          +@@*+-..........-+*@@+
+        +@#+....----------....+#@+
+       @@-..--...--------...--..-@@
+      @@..--..---..----..---..--..@@
+     *@.---.*@@#@@#....#@@#@@*.---.@*
+     @*.--.@@-+#+-@@--@@-+#+-@@.--.*@
+    -@-.--.@@ *@# #@**@# #@* @@.--.-@-
+    .@+.--.+@@*+*@@+..+@@*+*@@+.--.+@.
+     @#.---..+@@*+......+*@@+..---.#@
+     -@+.----.+@@#*++++*#@@+.----.+@-
+      +@*..---..+*#@@@@#*+..---..*@+
+       -@@-...--..........--...-@@-
+         *@#+-....------....-+#@*
+           +###*+--------+*###+
+             -@@@@@@@@@@@@@@-
+             +@@@@@@@@@@@@@@+
+             .@@@@@@@@@@@@@@.
+              @@@@@@@@@@@@@@
+              #@@@@@@@@@@@@#
+              *@@@@@@@@@@@@*
+              -@@@@@@@@@@@@-
+              .*#@@@@@@@@#*.
+`.replace(/^\n|\n$/g, '');
+
+function paint(ascii: string) {
+  const cls = (ch: string) => {
+    if ('@#%'.includes(ch)) return 'ah';
+    if ('*+'.includes(ch)) return 'am';
+    if ('.-'.includes(ch)) return 'ad';
+    return '';
+  };
+  return ascii.split('\n').map((line) => {
+    let out = '';
+    let i = 0;
+    while (i < line.length) {
+      const c = cls(line[i]);
+      let j = i + 1;
+      while (j < line.length && cls(line[j]) === c) j++;
+      const chunk = line.slice(i, j)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;');
+      out += c ? `<span class="${c}">${chunk}</span>` : chunk;
+      i = j;
+    }
+    return out;
+  }).join('\n');
+}
+
+const asciiHtml = paint(ASCII);
+
+const fetchRows = [
+  { key: 'OS', value: 'Omarchy (Arch Linux)' },
+  { key: 'Host', value: 'Bengaluru, India' },
+  { key: 'Day job', value: 'Cloud Foundry & BOSH' },
+  { key: 'Org', value: 'VMware by Broadcom (MTS)' },
+  { key: 'Now', value: 'something of my own · soon' },
+];
+
+const toolboxLeft = toolbox.slice(0, 4);
+const toolboxRight = toolbox.slice(4);
 ---
 
 <Base title="Apurva Saraiya — Software Engineer · Go, Backend, Distributed Systems">
@@ -36,51 +100,46 @@ const toolbox = [
     <div class="container">
       <p class="eyebrow reveal reveal-1">backend &middot; distributed systems &middot; go</p>
 
-      <h1 class="hero-title reveal reveal-2">
-        I write software. Backend, systems, <em>and the bits in between.</em>
-      </h1>
+      <div class="fetch reveal reveal-2" role="img" aria-label="Terminal profile for apurvasaraiya. Big-head mascot on the left, system info on the right.">
+        <pre class="fetch-ascii" set:html={asciiHtml}></pre>
 
-      <p class="hero-lede reveal reveal-3">
-        By day I work on Cloud Foundry and BOSH at VMware by Broadcom as an MTS
-        — distributed systems in Go. Nights, I grind on something of my own.
+        <div class="fetch-panel">
+          <p class="fetch-name">apurvasaraiya</p>
+          <p class="fetch-lede">
+            Software engineer. Backend, systems, and the bits in between.
+          </p>
+          <dl class="fetch-id">
+            {fetchRows.map((row) => (
+              <div class="fetch-row">
+                <dt>{row.key}</dt>
+                <dd>{row.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <dl class="toolbox-side">
+          {toolboxLeft.map((row) => (
+            <div class="toolbox-row">
+              <dt>{row.label}</dt>
+              <dd>{row.items}</dd>
+            </div>
+          ))}
+        </dl>
+        <dl class="toolbox-side toolbox-side-end">
+          {toolboxRight.map((row) => (
+            <div class="toolbox-row">
+              <dt>{row.label}</dt>
+              <dd>{row.items}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <p class="hero-status reveal reveal-3">
+        <span class="status-dot" aria-hidden="true"></span>
+        open to backend, AI, and most software roles &middot; Bengaluru, India (IST)
       </p>
-
-      <div class="pipelines reveal reveal-4" role="img"
-        aria-label="Two pipelines: your code through the platform to production — day job. An idea through grinding toward something I'll share soon — nights.">
-        <div class="rail">
-          <span class="node">your code</span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node-wrap">
-            <span class="node node-mine">the platform</span>
-            <span class="node-note">&boxur;&nbsp;day job</span>
-          </span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node">production</span>
-        </div>
-        <div class="rail">
-          <span class="node">an idea</span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node-wrap">
-            <span class="node node-mine">grinding</span>
-            <span class="node-note">&boxur;&nbsp;nights</span>
-          </span>
-          <span class="flow" aria-hidden="true"></span>
-          <span class="node">soon</span>
-        </div>
-      </div>
-
-      <div class="hero-actions reveal reveal-5">
-        <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
-          GitHub <span aria-hidden="true">&nearr;</span>
-        </a>
-        <a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-          LinkedIn <span aria-hidden="true">&nearr;</span>
-        </a>
-        <p class="hero-status">
-          <span class="status-dot" aria-hidden="true"></span>
-          open to backend, AI, and most software roles &middot; Bengaluru, India (IST)
-        </p>
-      </div>
     </div>
   </section>
 
@@ -123,157 +182,96 @@ const toolbox = [
       </ul>
     </div>
   </section>
-
-  <section class="block">
-    <div class="container">
-      <p class="eyebrow">toolbox</p>
-      <dl class="toolbox">
-        {toolbox.map((row) => (
-          <div class="toolbox-row">
-            <dt>{row.label}</dt>
-            <dd>{row.items}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </section>
-
-  <section class="block" id="contact">
-    <div class="container">
-      <p class="eyebrow">contact</p>
-      <h2 class="contact-title">The work that's out is on GitHub.</h2>
-      <p class="contact-lede">
-        Start with CopyIT and shortly. For roles — backend, AI, or something
-        that doesn't fit a neat label — LinkedIn DMs are open.
-      </p>
-      <div class="contact-actions">
-        <a href="https://github.com/apurvasaraiya" target="_blank" rel="noopener noreferrer" class="btn btn-solid">
-          GitHub <span aria-hidden="true">&nearr;</span>
-        </a>
-        <a href="https://www.linkedin.com/in/apurva-saraiya/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-          LinkedIn <span aria-hidden="true">&nearr;</span>
-        </a>
-        <a href="https://x.com/a____a07" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-          X <span aria-hidden="true">&nearr;</span>
-        </a>
-      </div>
-    </div>
-  </section>
 </Base>
 
 <style>
   .hero {
-    padding: var(--space-5) 0 var(--space-6);
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 7.5vw, 4.25rem);
-    font-weight: 800;
-    max-width: 15ch;
-    margin-bottom: var(--space-3);
-  }
-
-  .hero-title em {
-    font-style: normal;
-    color: var(--accent);
+    padding: var(--space-4) 0 var(--space-6);
   }
 
   .hero .eyebrow {
     margin-bottom: var(--space-3);
   }
 
-  .hero-lede {
-    font-size: 1.0625rem;
-    color: var(--ink-soft);
-    max-width: 36rem;
-    margin-bottom: var(--space-4);
-  }
-
-  .pipelines {
+  .fetch {
     display: grid;
-    grid-template-columns: max-content minmax(1rem, 3.5rem) max-content minmax(1rem, 3.5rem) max-content;
-    column-gap: 0.5rem;
-    row-gap: var(--space-2);
-    justify-content: start;
-    align-items: start;
+    gap: var(--space-3);
     padding: var(--space-3) 0;
-    margin-bottom: var(--space-4);
     border-top: 1px solid var(--hairline);
     border-bottom: 1px solid var(--hairline);
   }
 
-  .rail {
-    display: contents;
+  .fetch-ascii {
+    margin: 0 auto;
+    width: max-content;
+    max-width: 100%;
+    font-family: var(--font-mono);
+    font-size: clamp(8px, 2.5vw, 12.5px);
+    line-height: 1.18;
+    color: var(--accent);
+    overflow: hidden;
   }
 
-  .node {
-    display: inline-block;
-    padding: 0.35rem 0.7rem;
+  .fetch-ascii :global(.ad) {
+    color: color-mix(in srgb, var(--accent) 42%, var(--paper));
+  }
+  .fetch-ascii :global(.am) { color: var(--accent); }
+  .fetch-ascii :global(.ah) { color: var(--accent-deep); }
+
+  .fetch-panel {
+    min-width: 0;
+    align-self: center;
+  }
+
+  .fetch-name {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 0.35rem;
+  }
+
+  .fetch-lede {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 28rem;
+    margin: 0 0 var(--space-2);
+  }
+
+  .fetch-id {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .fetch-row {
+    display: grid;
+    grid-template-columns: 5.6em 1fr;
+    column-gap: 0.85em;
+    align-items: baseline;
+  }
+
+  .fetch-row dt {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    white-space: nowrap;
-    text-align: center;
-    color: var(--ink-soft);
-    border: 1px solid var(--hairline-strong);
-    border-radius: var(--radius);
-    background: var(--paper-raise);
-  }
-
-  .node-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .node-mine {
-    color: var(--accent-deep);
-    border-color: var(--accent);
-    background: var(--accent-wash);
-    font-weight: 600;
-  }
-
-  .node-note {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
     color: var(--accent);
-    padding-left: 0.35rem;
-    white-space: nowrap;
   }
 
-  .flow {
-    height: 1px;
-    align-self: start;
-    margin-top: 1.05rem;
-    background: var(--hairline-strong);
-    position: relative;
-  }
-
-  .flow::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: -3px;
-    border-left: 5px solid var(--hairline-strong);
-    border-top: 3.5px solid transparent;
-    border-bottom: 3.5px solid transparent;
-  }
-
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--space-2);
+  .fetch-row dd {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    min-width: 0;
   }
 
   .hero-status {
-    flex-basis: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--ink-faint);
-    margin: var(--space-1) 0 0;
+    margin: var(--space-3) 0 0;
   }
 
   .status-dot {
@@ -285,9 +283,7 @@ const toolbox = [
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .status-dot {
-      animation: pulse 2.4s var(--ease-out) infinite;
-    }
+    .status-dot { animation: pulse 2.4s var(--ease-out) infinite; }
   }
 
   @keyframes pulse {
@@ -300,9 +296,7 @@ const toolbox = [
     scroll-margin-top: 4.5rem;
   }
 
-  .block .eyebrow {
-    margin-bottom: var(--space-3);
-  }
+  .block .eyebrow { margin-bottom: var(--space-3); }
 
   .now-panel {
     padding: var(--space-4);
@@ -387,9 +381,7 @@ const toolbox = [
   }
 
   .work-row:hover .work-name,
-  .work-row:hover .work-n {
-    color: var(--accent);
-  }
+  .work-row:hover .work-n { color: var(--accent); }
 
   .work-meta {
     font-family: var(--font-mono);
@@ -413,78 +405,70 @@ const toolbox = [
     max-width: 36rem;
   }
 
-  .toolbox {
-    display: flex;
-    flex-direction: column;
+  .toolbox-side {
+    min-width: 0;
   }
 
   .toolbox-row {
     display: grid;
-    grid-template-columns: 7rem 1fr;
+    grid-template-columns: 6.5rem 1fr;
     gap: var(--space-2);
     align-items: baseline;
-    padding: 0.65rem 0;
+    padding: 0.45rem 0;
     border-bottom: 1px solid var(--hairline);
   }
-
-  .toolbox-row:first-child {
-    border-top: 1px solid var(--hairline);
-  }
-
+  .toolbox-side .toolbox-row:first-child { border-top: 1px solid var(--hairline); }
+  .toolbox-side-end .toolbox-row:first-child { border-top: 0; }
   .toolbox-row dt {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--ink-faint);
   }
-
   .toolbox-row dd {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--ink-soft);
   }
 
-  .contact-title {
-    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
-    margin-bottom: var(--space-2);
-  }
+  @media (min-width: 720px) {
+    .fetch {
+      grid-template-columns: minmax(16rem, 1fr) minmax(0, 1.15fr);
+      grid-template-areas:
+        "ascii panel"
+        "tbl   tbr";
+      column-gap: var(--space-4);
+      row-gap: var(--space-3);
+      align-items: center;
+    }
 
-  .contact-lede {
-    color: var(--ink-soft);
-    max-width: 34rem;
-    margin-bottom: var(--space-3);
-  }
+    .fetch-ascii {
+      grid-area: ascii;
+      margin: 0;
+      font-size: 11.5px;
+    }
 
-  .contact-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
+    .fetch-panel { grid-area: panel; }
+
+    .toolbox-side { grid-area: tbl; align-self: start; }
+    .toolbox-side-end { grid-area: tbr; align-self: start; }
+    .toolbox-side-end .toolbox-row:first-child {
+      border-top: 1px solid var(--hairline);
+    }
+    .toolbox-row {
+      grid-template-columns: 1fr;
+      gap: 0.12rem;
+    }
   }
 
   @media (max-width: 480px) {
-    .hero {
-      padding-top: var(--space-4);
-    }
+    .hero { padding-top: var(--space-3); }
 
-    .node {
-      font-size: 0.68rem;
-      padding: 0.3rem 0.5rem;
-    }
+    .toolbox-row { grid-template-columns: 6.25rem 1fr; }
 
-    .flow {
-      margin-top: 0.95rem;
-    }
-
-    .now-panel {
-      padding: var(--space-3);
-    }
-
+    .now-panel { padding: var(--space-3); }
     .work-row {
       grid-template-columns: 1.75rem 1fr;
       padding: var(--space-3) 0;
-    }
-
-    .toolbox-row {
-      grid-template-columns: 6.25rem 1fr;
     }
   }
 </style>
