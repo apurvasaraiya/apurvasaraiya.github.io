@@ -30,59 +30,6 @@ const toolbox = [
   { label: 'dev', items: 'bun · Neovim' },
 ];
 
-const ASCII = String.raw`
-                .--++++--.
-            .+#####****#####+.
-          +@@*+-..........-+*@@+
-        +@#+....----------....+#@+
-       @@-..--...--------...--..-@@
-      @@..--..---..----..---..--..@@
-     *@.---.*@@#@@#....#@@#@@*.---.@*
-     @*.--.@@-+#+-@@--@@-+#+-@@.--.*@
-    -@-.--.@@ *@# #@**@# #@* @@.--.-@-
-    .@+.--.+@@*+*@@+..+@@*+*@@+.--.+@.
-     @#.---..+@@*+......+*@@+..---.#@
-     -@+.----.+@@#*++++*#@@+.----.+@-
-      +@*..---..+*#@@@@#*+..---..*@+
-       -@@-...--..........--...-@@-
-         *@#+-....------....-+#@*
-           +###*+--------+*###+
-             -@@@@@@@@@@@@@@-
-             +@@@@@@@@@@@@@@+
-             .@@@@@@@@@@@@@@.
-              @@@@@@@@@@@@@@
-              #@@@@@@@@@@@@#
-              *@@@@@@@@@@@@*
-              -@@@@@@@@@@@@-
-              .*#@@@@@@@@#*.
-`.replace(/^\n|\n$/g, '');
-
-function paint(ascii: string) {
-  const cls = (ch: string) => {
-    if ('@#%'.includes(ch)) return 'ah';
-    if ('*+'.includes(ch)) return 'am';
-    if ('.-'.includes(ch)) return 'ad';
-    return '';
-  };
-  return ascii.split('\n').map((line) => {
-    let out = '';
-    let i = 0;
-    while (i < line.length) {
-      const c = cls(line[i]);
-      let j = i + 1;
-      while (j < line.length && cls(line[j]) === c) j++;
-      const chunk = line.slice(i, j)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;');
-      out += c ? `<span class="${c}">${chunk}</span>` : chunk;
-      i = j;
-    }
-    return out;
-  }).join('\n');
-}
-
-const asciiHtml = paint(ASCII);
-
 const fetchRows = [
   { key: 'OS', value: 'Omarchy (Arch Linux)' },
   { key: 'Host', value: 'Bengaluru, India' },
@@ -100,8 +47,14 @@ const toolboxRight = toolbox.slice(4);
     <div class="container">
       <p class="eyebrow reveal reveal-1">backend &middot; distributed systems &middot; go</p>
 
-      <div class="fetch reveal reveal-2" role="img" aria-label="Terminal profile for apurvasaraiya. Big-head mascot on the left, system info on the right.">
-        <pre class="fetch-ascii" set:html={asciiHtml}></pre>
+      <div class="fetch reveal reveal-2">
+        <img
+          class="fetch-avatar"
+          src="/avatar.png"
+          width="500"
+          height="500"
+          alt="Pixel portrait of Apurva Saraiya"
+        />
 
         <div class="fetch-panel">
           <p class="fetch-name">apurvasaraiya</p>
@@ -201,22 +154,14 @@ const toolboxRight = toolbox.slice(4);
     border-bottom: 1px solid var(--hairline);
   }
 
-  .fetch-ascii {
+  .fetch-avatar {
+    display: block;
+    width: min(14.5rem, 72vw);
+    height: auto;
     margin: 0 auto;
-    width: max-content;
-    max-width: 100%;
-    font-family: var(--font-mono);
-    font-size: clamp(8px, 2.5vw, 12.5px);
-    line-height: 1.18;
-    color: var(--accent);
-    overflow: hidden;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
   }
-
-  .fetch-ascii :global(.ad) {
-    color: color-mix(in srgb, var(--accent) 42%, var(--paper));
-  }
-  .fetch-ascii :global(.am) { color: var(--accent); }
-  .fetch-ascii :global(.ah) { color: var(--accent-deep); }
 
   .fetch-panel {
     min-width: 0;
@@ -441,10 +386,10 @@ const toolboxRight = toolbox.slice(4);
       align-items: center;
     }
 
-    .fetch-ascii {
+    .fetch-avatar {
       grid-area: ascii;
+      width: min(16rem, 100%);
       margin: 0;
-      font-size: 11.5px;
     }
 
     .fetch-panel { grid-area: panel; }
